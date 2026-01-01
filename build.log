@@ -1,0 +1,11 @@
+⚠ [7154/7154] Built FormalConjectures.Paper.DegreeSequencesTriangleFree
+warning: FormalConjectures/Paper/DegreeSequencesTriangleFree.lean:58:5: unused variable `h_pos`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FormalConjectures/Paper/DegreeSequencesTriangleFree.lean:371:8: declaration uses 'sorry'
+warning: FormalConjectures/Paper/DegreeSequencesTriangleFree.lean:378:6: declaration uses 'sorry'
+warning: FormalConjectures/Paper/DegreeSequencesTriangleFree.lean:387:6: declaration uses 'sorry'
+warning: FormalConjectures/Paper/DegreeSequencesTriangleFree.lean:398:8: declaration uses 'sorry'
+warning: FormalConjectures/Paper/DegreeSequencesTriangleFree.lean:411:8: declaration uses 'sorry'
+warning: FormalConjectures/Paper/DegreeSequencesTriangleFree.lean:415:8: declaration uses 'sorry'
+Build completed successfully.
