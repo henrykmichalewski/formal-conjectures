@@ -405,12 +405,16 @@ lemma lemma3Graph_degree (n : ℕ) (v : Fin (8 * n)) :
       omega
     change _ = i + 2 * n
     rw [add_comm, ← h_card]
-    apply Finset.card_bij (fun j' hj' => Fin.mk (j' + 4 * n - 1) (by
-      simp only [s, Finset.mem_union, Finset.mem_Icc] at hj'
-      rcases hj' with (h|h)|h <;> omega))
+    have h_mem_bound : ∀ j' ∈ s, j' + 4 * n - 1 < 8 * n := by
+      intro j' hj'
+      have : j' ∈ (Finset.Icc 1 n) ∪ (Finset.Icc (2 * n + 1) (3 * n)) ∪ (Finset.Icc (4 * n + 1 - i) (4 * n)) := hj'
+      simp only [Finset.mem_union, Finset.mem_Icc] at this
+      omega
+    apply Finset.card_bij (fun j' hj' => ⟨j' + 4 * n - 1, h_mem_bound j' hj'⟩)
     · intro j' hj'
       simp only [Finset.mem_filter, Finset.mem_univ, true_and]
-      simp only [s, Finset.mem_union, Finset.mem_Icc] at hj'
+      have : j' ∈ (Finset.Icc 1 n) ∪ (Finset.Icc (2 * n + 1) (3 * n)) ∪ (Finset.Icc (4 * n + 1 - i) (4 * n)) := hj'
+      simp only [Finset.mem_union, Finset.mem_Icc] at this
       dsimp [lemma3Graph]
       simp only [h_v_lt, true_and, false_or, or_false]
       omega
@@ -420,22 +424,26 @@ lemma lemma3Graph_degree (n : ℕ) (v : Fin (8 * n)) :
       dsimp [lemma3Graph] at hu
       simp only [h_v_lt, true_and, false_or, or_false] at hu
       use u.val - 4 * n + 1
-      simp only [s, Finset.mem_union, Finset.mem_Icc]
+      simp only [Finset.mem_union, Finset.mem_Icc]
       constructor
       · omega
       · simp [Fin.mk.inj_iff]; omega
+
+
   · -- Case 2: v < 4n, i > n
     let i := v.val + 1
     let s := Finset.Icc (4 * n + 1 - i) (4 * n)
     have h_card : s.card = i := by rw [Nat.card_Icc]; omega
     change _ = i
     rw [← h_card]
-    apply Finset.card_bij (fun j' hj' => Fin.mk (j' + 4 * n - 1) (by
-      simp only [s, Finset.mem_Icc] at hj'
-      omega))
+    have h_mem_bound : ∀ j' ∈ s, j' + 4 * n - 1 < 8 * n := by
+      intro j' hj'
+      simp only [Finset.mem_Icc] at hj'
+      omega
+    apply Finset.card_bij (fun j' hj' => ⟨j' + 4 * n - 1, h_mem_bound j' hj'⟩)
     · intro j' hj'
       simp only [Finset.mem_filter, Finset.mem_univ, true_and]
-      simp only [s, Finset.mem_Icc] at hj'
+      simp only [Finset.mem_Icc] at hj'
       dsimp [lemma3Graph]
       simp only [h_v_lt, true_and, false_or, or_false]
       omega
@@ -445,10 +453,11 @@ lemma lemma3Graph_degree (n : ℕ) (v : Fin (8 * n)) :
       dsimp [lemma3Graph] at hu
       simp only [h_v_lt, true_and, false_or, or_false] at hu
       use u.val - 4 * n + 1
-      simp only [s, Finset.mem_Icc]
+      simp only [Finset.mem_Icc]
       constructor
       · omega
       · simp [Fin.mk.inj_iff]; omega
+
   · -- Case 3: v ≥ 4n, j' ≤ n
     let j' := v.val - 4 * n + 1
     let s := (Finset.Icc 1 n) ∪ (Finset.Icc (4 * n + 1 - j') (4 * n))
@@ -458,13 +467,13 @@ lemma lemma3Graph_degree (n : ℕ) (v : Fin (8 * n)) :
       rw [Finset.card_union_of_disjoint h, Nat.card_Icc, Nat.card_Icc]; omega
     change _ = j' + n
     rw [add_comm, ← h_card]
-    apply Finset.card_bij (fun i hi => Fin.mk (i - 1) (by
-      dsimp [s] at hi
+    have h_mem_bound : ∀ i ∈ s, i - 1 < 8 * n := by
+      intro i hi
       simp only [Finset.mem_union, Finset.mem_Icc] at hi
-      omega))
+      omega
+    apply Finset.card_bij (fun i hi => ⟨i - 1, h_mem_bound i hi⟩)
     · intro i hi
       simp only [Finset.mem_filter, Finset.mem_univ, true_and]
-      dsimp [s] at hi
       simp only [Finset.mem_union, Finset.mem_Icc] at hi
       dsimp [lemma3Graph]
       simp only [h_v_lt, false_and, false_or, true_and]
@@ -475,7 +484,6 @@ lemma lemma3Graph_degree (n : ℕ) (v : Fin (8 * n)) :
       dsimp [lemma3Graph] at hu
       simp only [h_v_lt, false_and, false_or, true_and] at hu
       use u.val + 1
-      dsimp [s]
       simp only [Finset.mem_union, Finset.mem_Icc]
       constructor
       · omega
@@ -486,13 +494,13 @@ lemma lemma3Graph_degree (n : ℕ) (v : Fin (8 * n)) :
     have h_card : s.card = j' := by rw [Nat.card_Icc]; omega
     change _ = j'
     rw [← h_card]
-    apply Finset.card_bij (fun i hi => Fin.mk (i - 1) (by
-      dsimp [s] at hi
+    have h_mem_bound : ∀ i ∈ s, i - 1 < 8 * n := by
+      intro i hi
       simp only [Finset.mem_Icc] at hi
-      omega))
+      omega
+    apply Finset.card_bij (fun i hi => ⟨i - 1, h_mem_bound i hi⟩)
     · intro i hi
       simp only [Finset.mem_filter, Finset.mem_univ, true_and]
-      dsimp [s] at hi
       simp only [Finset.mem_Icc] at hi
       dsimp [lemma3Graph]
       simp only [h_v_lt, false_and, false_or, true_and]
@@ -503,7 +511,6 @@ lemma lemma3Graph_degree (n : ℕ) (v : Fin (8 * n)) :
       dsimp [lemma3Graph] at hu
       simp only [h_v_lt, false_and, false_or, true_and] at hu
       use u.val + 1
-      dsimp [s]
       simp only [Finset.mem_Icc]
       constructor
       · omega
@@ -517,13 +524,13 @@ lemma lemma3Graph_degree (n : ℕ) (v : Fin (8 * n)) :
       rw [Finset.card_union_of_disjoint h, Nat.card_Icc, Nat.card_Icc]; omega
     change _ = j' + n
     rw [add_comm, ← h_card]
-    apply Finset.card_bij (fun i hi => Fin.mk (i - 1) (by
-      dsimp [s] at hi
+    have h_mem_bound : ∀ i ∈ s, i - 1 < 8 * n := by
+      intro i hi
       simp only [Finset.mem_union, Finset.mem_Icc] at hi
-      omega))
+      omega
+    apply Finset.card_bij (fun i hi => ⟨i - 1, h_mem_bound i hi⟩)
     · intro i hi
       simp only [Finset.mem_filter, Finset.mem_univ, true_and]
-      dsimp [s] at hi
       simp only [Finset.mem_union, Finset.mem_Icc] at hi
       dsimp [lemma3Graph]
       simp only [h_v_lt, false_and, false_or, true_and]
@@ -534,7 +541,6 @@ lemma lemma3Graph_degree (n : ℕ) (v : Fin (8 * n)) :
       dsimp [lemma3Graph] at hu
       simp only [h_v_lt, false_and, false_or, true_and] at hu
       use u.val + 1
-      dsimp [s]
       simp only [Finset.mem_union, Finset.mem_Icc]
       constructor
       · omega
@@ -545,13 +551,13 @@ lemma lemma3Graph_degree (n : ℕ) (v : Fin (8 * n)) :
     have h_card : s.card = j' := by rw [Nat.card_Icc]; omega
     change _ = j'
     rw [← h_card]
-    apply Finset.card_bij (fun i hi => Fin.mk (i - 1) (by
-      dsimp [s] at hi
+    have h_mem_bound : ∀ i ∈ s, i - 1 < 8 * n := by
+      intro i hi
       simp only [Finset.mem_Icc] at hi
-      omega))
+      omega
+    apply Finset.card_bij (fun i hi => ⟨i - 1, h_mem_bound i hi⟩)
     · intro i hi
       simp only [Finset.mem_filter, Finset.mem_univ, true_and]
-      dsimp [s] at hi
       simp only [Finset.mem_Icc] at hi
       dsimp [lemma3Graph]
       simp only [h_v_lt, false_and, false_or, true_and]
@@ -562,11 +568,11 @@ lemma lemma3Graph_degree (n : ℕ) (v : Fin (8 * n)) :
       dsimp [lemma3Graph] at hu
       simp only [h_v_lt, false_and, false_or, true_and] at hu
       use u.val + 1
-      dsimp [s]
       simp only [Finset.mem_Icc]
       constructor
       · omega
       · simp [Fin.mk.inj_iff]; omega
+
 
 set_option maxHeartbeats 0
 /-- **Lemma 3.** For every `n` there exists a bipartite graph with
