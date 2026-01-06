@@ -1,11 +1,385 @@
-⚠ [7154/7154] Built FormalConjectures.Paper.DegreeSequencesTriangleFree
-warning: FormalConjectures/Paper/DegreeSequencesTriangleFree.lean:58:5: unused variable `h_pos`
+✖ [7154/7154] Building FormalConjectures.Paper.StrongSensitivityConjecture
+trace: .> LEAN_PATH=/home/henrykm/formal-conjectures/.lake/packages/Cli/.lake/build/lib/lean:/home/henrykm/formal-conjectures/.lake/packages/batteries/.lake/build/lib/lean:/home/henrykm/formal-conjectures/.lake/packages/Qq/.lake/build/lib/lean:/home/henrykm/formal-conjectures/.lake/packages/aesop/.lake/build/lib/lean:/home/henrykm/formal-conjectures/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/henrykm/formal-conjectures/.lake/packages/importGraph/.lake/build/lib/lean:/home/henrykm/formal-conjectures/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/henrykm/formal-conjectures/.lake/packages/plausible/.lake/build/lib/lean:/home/henrykm/formal-conjectures/.lake/packages/mathlib/.lake/build/lib/lean:/home/henrykm/formal-conjectures/.lake/build/lib/lean /home/henrykm/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean /home/henrykm/formal-conjectures/FormalConjectures/Paper/StrongSensitivityConjecture.lean -o /home/henrykm/formal-conjectures/.lake/build/lib/lean/FormalConjectures/Paper/StrongSensitivityConjecture.olean -i /home/henrykm/formal-conjectures/.lake/build/lib/lean/FormalConjectures/Paper/StrongSensitivityConjecture.ilean -c /home/henrykm/formal-conjectures/.lake/build/ir/FormalConjectures/Paper/StrongSensitivityConjecture.c --setup /home/henrykm/formal-conjectures/.lake/build/ir/FormalConjectures/Paper/StrongSensitivityConjecture.setup.json --json
+warning: FormalConjectures/Paper/StrongSensitivityConjecture.lean:99:8: declaration uses 'sorry'
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:129:13: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:143:30: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:160:30: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:184:6: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:229:8: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:260:8: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:262:33: Application type mismatch: In the application
+  Union.union {i | x i = true}
+the argument
+  {i | x i = true}
+has type
+  Set (Fin n) : Type
+but is expected to have type
+  Finset (Fin n) : Type
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:262:87: unknown identifier 'w'
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:263:12: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  {i | x i = true} ∪ {i | x i = false}
+n : ℕ
+hn : 4 ∣ n
+hn0 : n ≠ 0
+x : Fin n → Bool
+a✝ : x ∈ univ
+target : Finset ℕ := {n / 2, n / 2 + 1}
+h_val : ∀ (y : Fin n → Bool), nisanExample n y = decide (#{i | y i = true} ∈ target)
+h_union : univ = {i | x i = true} ∪ {i | x i = false}
+h_disj : Disjoint {i | x i = true} {i | x i = false}
+k : ℕ := n / 2
+hk : k = n / 2
+h2n : 2 ∣ n
+hn_eq : 2 * k = 2 * k
+h_target_eq : {k, k + 1} = {k, k + 1}
+hk2 : 2 ≤ k
+hw : #{i | x i = true} = #{i | x i = true}
+h_flip_weight :
+  ∀ (i : Fin n), #{j | flip x {i} j = true} = if x i = true then #{i | x i = true} - 1 else #{i | x i = true} + 1
+hw_k : #{i | x i = true} = k
+this : k - 1 ∉ {k, k + 1}
+h_term_pos :
+  ∀ (i : Fin n),
+    x i = true →
+      (if
+            (decide ((if x i = true then k - 1 else k + 1) = k) ||
+                decide ((if x i = true then k - 1 else k + 1) = k + 1)) =
+              (decide (k = k) || decide (k = k + 1)) then
+          0
+        else 1) =
+        1
+h_term_neg :
+  ∀ (i : Fin n),
+    (!x i) = true →
+      (if
+            (decide ((if x i = true then k - 1 else k + 1) = k) ||
+                decide ((if x i = true then k - 1 else k + 1) = k + 1)) =
+              (decide (k = k) || decide (k = k + 1)) then
+          0
+        else 1) =
+        0
+h_sum_pos :
+  (∑ x_1 with x x_1 = true,
+      if
+          (decide ((if x x_1 = true then k - 1 else k + 1) = k) ||
+              decide ((if x x_1 = true then k - 1 else k + 1) = k + 1)) =
+            (decide (k = k) || decide (k = k + 1)) then
+        0
+      else 1) =
+    ∑ x with x x = true, 1
+h_sum_neg :
+  (∑ x_1 with x x_1 = false,
+      if
+          (decide ((if x x_1 = true then k - 1 else k + 1) = k) ||
+              decide ((if x x_1 = true then k - 1 else k + 1) = k + 1)) =
+            (decide (k = k) || decide (k = k + 1)) then
+        0
+      else 1) =
+    ∑ x with x x = false, 0
+h_union_set : {i | x i = true} ∪ {i | x i = false} = Set.univ
+⊢ #({i ∈ sorry ∪ sorry | x i = true}) = sorry
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:277:14: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:282:8: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:291:8: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:323:8: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:325:33: Application type mismatch: In the application
+  Union.union {i | x i = true}
+the argument
+  {i | x i = true}
+has type
+  Set (Fin n) : Type
+but is expected to have type
+  Finset (Fin n) : Type
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:325:87: unknown identifier 'w'
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:326:12: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  {i | x i = true} ∪ {i | x i = false}
+n : ℕ
+hn : 4 ∣ n
+hn0 : n ≠ 0
+x : Fin n → Bool
+a✝ : x ∈ univ
+target : Finset ℕ := {n / 2, n / 2 + 1}
+h_val : ∀ (y : Fin n → Bool), nisanExample n y = decide (#{i | y i = true} ∈ target)
+h_union : univ = {i | x i = true} ∪ {i | x i = false}
+h_disj : Disjoint {i | x i = true} {i | x i = false}
+k : ℕ := n / 2
+hk : k = n / 2
+h2n : 2 ∣ n
+hn_eq : 2 * k = 2 * k
+h_target_eq : {k, k + 1} = {k, k + 1}
+hk2 : 2 ≤ k
+hw : #{i | x i = true} = #{i | x i = true}
+h_flip_weight :
+  ∀ (i : Fin n), #{j | flip x {i} j = true} = if x i = true then #{i | x i = true} - 1 else #{i | x i = true} + 1
+hw_k : ¬#{i | x i = true} = k
+hw_k1 : #{i | x i = true} = k + 1
+this : k + 2 ∉ {k, k + 1}
+h_term_pos :
+  ∀ (i : Fin n),
+    x i = true →
+      (if
+            (decide ((if x i = true then k else k + 2) = k) || decide ((if x i = true then k else k + 2) = k + 1)) =
+              (decide (k + 1 = k) || decide (k + 1 = k + 1)) then
+          0
+        else 1) =
+        0
+h_term_neg :
+  ∀ (i : Fin n),
+    (!x i) = true →
+      (if
+            (decide ((if x i = true then k else k + 2) = k) || decide ((if x i = true then k else k + 2) = k + 1)) =
+              (decide (k + 1 = k) || decide (k + 1 = k + 1)) then
+          0
+        else 1) =
+        1
+h_sum_pos :
+  (∑ x_1 with x x_1 = true,
+      if
+          (decide ((if x x_1 = true then k else k + 2) = k) || decide ((if x x_1 = true then k else k + 2) = k + 1)) =
+            (decide (k + 1 = k) || decide (k + 1 = k + 1)) then
+        0
+      else 1) =
+    ∑ x with x x = true, 0
+h_sum_neg :
+  (∑ x_1 with x x_1 = false,
+      if
+          (decide ((if x x_1 = true then k else k + 2) = k) || decide ((if x x_1 = true then k else k + 2) = k + 1)) =
+            (decide (k + 1 = k) || decide (k + 1 = k + 1)) then
+        0
+      else 1) =
+    ∑ x with x x = false, 1
+h_union_set : {i | x i = true} ∪ {i | x i = false} = Set.univ
+⊢ #({i ∈ sorry ∪ sorry | x i = true}) = sorry
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:388:8: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:390:33: Application type mismatch: In the application
+  Union.union {i | x i = true}
+the argument
+  {i | x i = true}
+has type
+  Set (Fin n) : Type
+but is expected to have type
+  Finset (Fin n) : Type
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:390:87: unknown identifier 'w'
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:391:12: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  {i | x i = true} ∪ {i | x i = false}
+n : ℕ
+hn : 4 ∣ n
+hn0 : n ≠ 0
+x : Fin n → Bool
+a✝ : x ∈ univ
+target : Finset ℕ := {n / 2, n / 2 + 1}
+h_val : ∀ (y : Fin n → Bool), nisanExample n y = decide (#{i | y i = true} ∈ target)
+h_union : univ = {i | x i = true} ∪ {i | x i = false}
+h_disj : Disjoint {i | x i = true} {i | x i = false}
+k : ℕ := n / 2
+hk : k = n / 2
+h2n : 2 ∣ n
+hn_eq : 2 * k = 2 * k
+h_target_eq : {k, k + 1} = {k, k + 1}
+hk2 : 2 ≤ k
+hw : #{i | x i = true} = #{i | x i = true}
+h_flip_weight :
+  ∀ (i : Fin n), #{j | flip x {i} j = true} = if x i = true then #{i | x i = true} - 1 else #{i | x i = true} + 1
+hw_k : ¬#{i | x i = true} = k
+hw_k1 : ¬#{i | x i = true} = k + 1
+hw_km1 : #{i | x i = true} = k - 1
+this✝ : k - 1 ∉ {k, k + 1}
+this : k - 2 ∉ {k, k + 1}
+h_term_pos :
+  ∀ (i : Fin n),
+    x i = true →
+      (if
+            (decide ((if x i = true then k - 2 else k) = k) || decide ((if x i = true then k - 2 else k) = k + 1)) =
+              (decide (k - 1 = k) || decide (k - 1 = k + 1)) then
+          0
+        else 1) =
+        0
+h_term_neg :
+  ∀ (i : Fin n),
+    (!x i) = true →
+      (if
+            (decide ((if x i = true then k - 2 else k) = k) || decide ((if x i = true then k - 2 else k) = k + 1)) =
+              (decide (k - 1 = k) || decide (k - 1 = k + 1)) then
+          0
+        else 1) =
+        1
+h_sum_pos :
+  (∑ x_1 with x x_1 = true,
+      if
+          (decide ((if x x_1 = true then k - 2 else k) = k) || decide ((if x x_1 = true then k - 2 else k) = k + 1)) =
+            (decide (k - 1 = k) || decide (k - 1 = k + 1)) then
+        0
+      else 1) =
+    ∑ x with x x = true, 0
+h_sum_neg :
+  (∑ x_1 with x x_1 = false,
+      if
+          (decide ((if x x_1 = true then k - 2 else k) = k) || decide ((if x x_1 = true then k - 2 else k) = k + 1)) =
+            (decide (k - 1 = k) || decide (k - 1 = k + 1)) then
+        0
+      else 1) =
+    ∑ x with x x = false, 1
+h_union_set : {i | x i = true} ∪ {i | x i = false} = Set.univ
+⊢ #({i ∈ sorry ∪ sorry | x i = true}) = sorry
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:405:14: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:408:8: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:413:8: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:423:8: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:455:8: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:457:33: Application type mismatch: In the application
+  Union.union {i | x i = true}
+the argument
+  {i | x i = true}
+has type
+  Set (Fin n) : Type
+but is expected to have type
+  Finset (Fin n) : Type
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:457:87: unknown identifier 'w'
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:458:12: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  {i | x i = true} ∪ {i | x i = false}
+n : ℕ
+hn : 4 ∣ n
+hn0 : n ≠ 0
+x : Fin n → Bool
+a✝ : x ∈ univ
+target : Finset ℕ := {n / 2, n / 2 + 1}
+h_val : ∀ (y : Fin n → Bool), nisanExample n y = decide (#{i | y i = true} ∈ target)
+h_union : univ = {i | x i = true} ∪ {i | x i = false}
+h_disj : Disjoint {i | x i = true} {i | x i = false}
+k : ℕ := n / 2
+hk : k = n / 2
+h2n : 2 ∣ n
+hn_eq : 2 * k = 2 * k
+h_target_eq : {k, k + 1} = {k, k + 1}
+hk2 : 2 ≤ k
+hw : #{i | x i = true} = #{i | x i = true}
+h_flip_weight :
+  ∀ (i : Fin n), #{j | flip x {i} j = true} = if x i = true then #{i | x i = true} - 1 else #{i | x i = true} + 1
+hw_k : ¬#{i | x i = true} = k
+hw_k1 : ¬#{i | x i = true} = k + 1
+hw_km1 : ¬#{i | x i = true} = k - 1
+hw_kp2 : #{i | x i = true} = k + 2
+this✝ : k + 2 ∉ {k, k + 1}
+this : k + 3 ∉ {k, k + 1}
+h_term_pos :
+  ∀ (i : Fin n),
+    x i = true →
+      (if
+            (decide ((if x i = true then k + 1 else k + 3) = k) ||
+                decide ((if x i = true then k + 1 else k + 3) = k + 1)) =
+              (decide (k + 2 = k) || decide (k + 2 = k + 1)) then
+          0
+        else 1) =
+        1
+h_term_neg :
+  ∀ (i : Fin n),
+    (!x i) = true →
+      (if
+            (decide ((if x i = true then k + 1 else k + 3) = k) ||
+                decide ((if x i = true then k + 1 else k + 3) = k + 1)) =
+              (decide (k + 2 = k) || decide (k + 2 = k + 1)) then
+          0
+        else 1) =
+        0
+h_sum_pos :
+  (∑ x_1 with x x_1 = true,
+      if
+          (decide ((if x x_1 = true then k + 1 else k + 3) = k) ||
+              decide ((if x x_1 = true then k + 1 else k + 3) = k + 1)) =
+            (decide (k + 2 = k) || decide (k + 2 = k + 1)) then
+        0
+      else 1) =
+    ∑ x with x x = true, 1
+h_sum_neg :
+  (∑ x_1 with x x_1 = false,
+      if
+          (decide ((if x x_1 = true then k + 1 else k + 3) = k) ||
+              decide ((if x x_1 = true then k + 1 else k + 3) = k + 1)) =
+            (decide (k + 2 = k) || decide (k + 2 = k + 1)) then
+        0
+      else 1) =
+    ∑ x with x x = false, 0
+h_union_set : {i | x i = true} ∪ {i | x i = false} = Set.univ
+⊢ #({i ∈ sorry ∪ sorry | x i = true}) = sorry
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:528:6: simp made no progress
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:552:46: simp made no progress
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:571:30: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:589:30: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:598:8: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:603:63: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:604:64: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:612:6: no goals to be solved
+error: FormalConjectures/Paper/StrongSensitivityConjecture.lean:622:10: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ∑ x, ?f x
+n : ℕ
+hn : 4 ∣ n
+hn0 : n ≠ 0
+k : ℕ := n / 2
+x : Fin n → Bool := fun i ↦ decide (↑i < k + 2)
+hx : x ∈ univ
+w : ℕ := #{i | x i = true}
+hw : w = k + 2
+hk : n / 2 = k
+target : Finset ℕ := {k, k + 1}
+h_w_eq : #{j | x j = true} = w
+h_val : ∀ (y : Fin n → Bool), nisanExample n y = decide (#{i | y i = true} ∈ target)
+h_flip_weight : ∀ (i : Fin n), #{j | flip x {i} j = true} = if x i = true then k + 1 else k + 3
+h_in_target : k + 1 ∈ target
+h_not_in_target : k + 2 ∉ target
+h_not_in_target3 : k + 3 ∉ target
+h_lhs_split : w = ∑ x with x x = true, 1 + ∑ x with (!x x) = true, 0
+| ∑ x with decide ((if x x = true then k + 1 else k + 3) ∈ {k, k + 1}) ≠ decide (#{i | x i = true} ∈ {k, k + 1}), 1
+warning: FormalConjectures/Paper/StrongSensitivityConjecture.lean:175:15: This simp argument is unused:
+  h_val
 
-Note: This linter can be disabled with `set_option linter.unusedVariables false`
-warning: FormalConjectures/Paper/DegreeSequencesTriangleFree.lean:371:8: declaration uses 'sorry'
-warning: FormalConjectures/Paper/DegreeSequencesTriangleFree.lean:378:6: declaration uses 'sorry'
-warning: FormalConjectures/Paper/DegreeSequencesTriangleFree.lean:387:6: declaration uses 'sorry'
-warning: FormalConjectures/Paper/DegreeSequencesTriangleFree.lean:398:8: declaration uses 'sorry'
-warning: FormalConjectures/Paper/DegreeSequencesTriangleFree.lean:411:8: declaration uses 'sorry'
-warning: FormalConjectures/Paper/DegreeSequencesTriangleFree.lean:415:8: declaration uses 'sorry'
-Build completed successfully.
+Hint: Omit it from the simp argument list.
+  simp only ̵[̵h̵_̵v̵a̵l̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FormalConjectures/Paper/StrongSensitivityConjecture.lean:223:18: This simp argument is unused:
+  h2
+
+Hint: Omit it from the simp argument list.
+  simp [h1, h2̵,̵ ̵h̵3]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FormalConjectures/Paper/StrongSensitivityConjecture.lean:223:22: This simp argument is unused:
+  h3
+
+Hint: Omit it from the simp argument list.
+  simp [h1, h2,̵ ̵h̵3̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FormalConjectures/Paper/StrongSensitivityConjecture.lean:351:26: This simp argument is unused:
+  h4
+
+Hint: Omit it from the simp argument list.
+  simp [h1, h2, h3,̵ ̵h̵4̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FormalConjectures/Paper/StrongSensitivityConjecture.lean:360:14: This simp argument is unused:
+  h1
+
+Hint: Omit it from the simp argument list.
+  simp [h1̵,̵ ̵h̵2, h3]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FormalConjectures/Paper/StrongSensitivityConjecture.lean:360:22: This simp argument is unused:
+  h3
+
+Hint: Omit it from the simp argument list.
+  simp [h1, h2,̵ ̵h̵3̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FormalConjectures/Paper/StrongSensitivityConjecture.lean:557:15: This simp argument is unused:
+  h_val
+
+Hint: Omit it from the simp argument list.
+  simp only ̵[̵h̵_̵v̵a̵l̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FormalConjectures/Paper/StrongSensitivityConjecture.lean:656:6: declaration uses 'sorry'
+error: Lean exited with code 1
+Some required builds logged failures:
+- FormalConjectures.Paper.StrongSensitivityConjecture
+error: build failed
