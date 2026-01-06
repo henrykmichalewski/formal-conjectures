@@ -16,17 +16,12 @@ limitations under the License.
 
 
 import FormalConjectures.Util.ProblemImports
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.DiamExtra
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Domination
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.Bipartite
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Definitions
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Invariants
 
-open Classical
+namespace WrittenOnTheWallII.GraphConjecture2
 
-namespace SimpleGraph
+open Classical SimpleGraph
 
-variable {α : Type*} [Fintype α] [DecidableEq α]
+variable {α : Type*} [Fintype α] [DecidableEq α] [Nontrivial α]
 
 /--
 WOWII [Conjecture 2](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
@@ -39,4 +34,4 @@ the neighbourhoods of the vertices of `G`.
 theorem conjecture2 (G : SimpleGraph α) (h : G.Connected) :
   2 * (l G - 1) ≤ Ls G := by sorry
 
-end SimpleGraph
+end WrittenOnTheWallII.GraphConjecture2

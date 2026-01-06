@@ -15,11 +15,8 @@ limitations under the License.
 -/
 
 import FormalConjectures.Util.ProblemImports
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.DiamExtra
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Domination
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.Bipartite
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Definitions
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Invariants
+
+namespace WrittenOnTheWallII.GraphConjecture1
 
 open SimpleGraph
 
@@ -32,7 +29,9 @@ tree satisfies `Ls(G) ≥ n(G) + 1 - 2·m(G)` where `n(G)` counts vertices and
 -/
 
 @[category research solved, AMS 5]
-theorem conjecture1 {α : Type*} [Fintype α] [DecidableEq α]
+theorem conjecture1 {α : Type*} [Fintype α] [DecidableEq α] [Nontrivial α]
     (G : SimpleGraph α) [DecidableRel G.Adj] (h_conn : G.Connected) :
     n G + 1 - 2 * m G ≤ Ls G := by
   sorry
+
+end WrittenOnTheWallII.GraphConjecture1

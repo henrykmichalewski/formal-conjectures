@@ -15,15 +15,12 @@ limitations under the License.
 -/
 
 import FormalConjectures.Util.ProblemImports
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.DiamExtra
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Domination
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.Bipartite
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Definitions
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Invariants
 
-namespace SimpleGraph
+namespace WrittenOnTheWallII.GraphConjecture58
 
-variable {α : Type*} [Fintype α] [DecidableEq α] (G : SimpleGraph α)
+open SimpleGraph
+
+variable {α : Type*} [Fintype α] [DecidableEq α] [Nontrivial α] (G : SimpleGraph α)
 
 /--
 WOWII [Conjecture 58](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
@@ -37,4 +34,4 @@ theorem conjecture58 (hG : G.Connected) :
     Nat.ceil (G.b / G.l_avg) ≤ G.f := by
   sorry
 
-end SimpleGraph
+end WrittenOnTheWallII.GraphConjecture58

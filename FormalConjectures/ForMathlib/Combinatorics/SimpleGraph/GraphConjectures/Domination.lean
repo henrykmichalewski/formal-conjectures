@@ -14,7 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -/
 
-import FormalConjectures.Util.ProblemImports
+import Mathlib.Combinatorics.SimpleGraph.Clique
+import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
 
 /-
 Dominating sets and domination numbers
@@ -112,7 +113,7 @@ noncomputable def vertexCoverNumber (G : SimpleGraph α) : ℕ :=
 
 /-- A set of edges is an edge cover if every vertex is incident to some edge in it. -/
 def IsEdgeCover (G : SimpleGraph α) (M : Set (Sym2 α)) : Prop :=
-  ∀ v, ∃ e ∈ M, v ∈ e
+  M ⊆ G.edgeSet ∧ ∀ v, ∃ e ∈ M, v ∈ e
 
 /-- The minimum edge cover number of `G`. -/
 noncomputable def edgeCoverNumber (G : SimpleGraph α) : ℕ :=

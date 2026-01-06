@@ -15,15 +15,12 @@ limitations under the License.
 -/
 
 import FormalConjectures.Util.ProblemImports
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.DiamExtra
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Domination
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.Bipartite
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Definitions
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Invariants
 
-namespace SimpleGraph
+namespace WrittenOnTheWallII.GraphConjecture40
 
-variable {α : Type*} [Fintype α] [DecidableEq α] (G : SimpleGraph α)
+open SimpleGraph
+
+variable {α : Type*} [Fintype α] [DecidableEq α] [Nontrivial α] (G : SimpleGraph α)
 
 /--
 WOWII [Conjecture 40](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
@@ -37,4 +34,4 @@ theorem conjecture40 (h_conn : G.Connected) (h_nontrivial : 1 < Fintype.card α)
     ⌈((p G + b G + 1) / 2)⌉ ≤ f G := by
   sorry
 
-end SimpleGraph
+end WrittenOnTheWallII.GraphConjecture40

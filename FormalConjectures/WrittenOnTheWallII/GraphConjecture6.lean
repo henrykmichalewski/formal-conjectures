@@ -16,17 +16,14 @@ limitations under the License.
 
 
 import FormalConjectures.Util.ProblemImports
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.DiamExtra
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Domination
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.Bipartite
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Definitions
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Invariants
 
 open Classical
 
-namespace SimpleGraph
+namespace WrittenOnTheWallII.GraphConjecture6
 
-variable {α : Type*} [Fintype α] [DecidableEq α]
+open SimpleGraph
+
+variable {α : Type*} [Fintype α] [DecidableEq α] [Nontrivial α]
 
 /--
 WOWII [Conjecture 6](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
@@ -39,4 +36,4 @@ theorem conjecture6 (G : SimpleGraph α) [DecidableRel G.Adj] (h_conn : G.Connec
     1 + n G - m G - a G ≤ Ls G := by
   sorry
 
-end SimpleGraph
+end WrittenOnTheWallII.GraphConjecture6

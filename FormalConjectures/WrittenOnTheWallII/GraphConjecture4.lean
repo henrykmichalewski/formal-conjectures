@@ -15,13 +15,10 @@ limitations under the License.
 -/
 
 import FormalConjectures.Util.ProblemImports
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.DiamExtra
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Domination
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.Bipartite
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Definitions
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Invariants
 
-namespace SimpleGraph
+namespace WrittenOnTheWallII.GraphConjecture4
+
+open SimpleGraph
 
 variable {α : Type*} [Fintype α] [DecidableEq α]
 
@@ -33,8 +30,8 @@ trees satisfies `Ls(G) ≥ NG(G) - 1` where `NG(G)` is the minimal neighbourhood
 size of a non-edge of `G`.
 -/
 @[category research solved, AMS 5]
-theorem conjecture4 (G : SimpleGraph α) [DecidableRel G.Adj] [Nonempty α] (h_conn : G.Connected) :
+theorem conjecture4 (G : SimpleGraph α) [DecidableRel G.Adj] [Nontrivial α] (h_conn : G.Connected) :
     NG G - 1 ≤ Ls G := by
   sorry
 
-end SimpleGraph
+end WrittenOnTheWallII.GraphConjecture4

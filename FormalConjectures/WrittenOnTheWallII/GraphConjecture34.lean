@@ -16,16 +16,13 @@ limitations under the License.
 
 
 import FormalConjectures.Util.ProblemImports
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.DiamExtra
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Domination
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.Bipartite
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Definitions
-import FormalConjectures.ForMathlib.Combinatorics.SimpleGraph.GraphConjectures.Invariants
 
 open Finset
 open scoped Classical
 
-namespace SimpleGraph
+namespace WrittenOnTheWallII.GraphConjecture34
+
+open SimpleGraph
 
 variable {α : Type*} [Fintype α] [DecidableEq α]
 
@@ -37,8 +34,8 @@ Then
 `path(G) ≥ ceil( distavg(G, center) + distavg(G, maxEccentricityVertices G) )`.
 -/
 @[category research open, AMS 5]
-theorem conjecture34 [Nonempty α] (G : SimpleGraph α) (h_conn : G.Connected) :
+theorem conjecture34 [Nontrivial α] (G : SimpleGraph α) (h_conn : G.Connected) :
     Int.ceil (distavg G (graphCenter G) + distavg G (maxEccentricityVertices G)) ≤ (path G : ℤ) := by
   sorry
 
-end SimpleGraph
+end WrittenOnTheWallII.GraphConjecture34
