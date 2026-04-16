@@ -424,8 +424,8 @@ example : Set.ncard ({n : ℕ | Even n} ∩ {n : ℕ | n = 0 ∨ Odd n}) = 1 := 
 
 /- ## Disproofs of natural-looking false variants
 
-Following the SafeVerify PR #16 pattern, we formally disprove plausible
-misformalizations to document which hypotheses are load-bearing. -/
+We formally disprove plausible misformalizations to document which hypotheses
+are load-bearing. -/
 
 /-- A natural but FALSE relaxation of `erdos_602.variants.disjoint`: drop the
 hypothesis that each `A i` is infinite. The original `disjoint` variant requires
@@ -466,22 +466,10 @@ theorem disjoint_without_infinite_claim.disproof :
   simp only [Set.mem_singleton_iff] at hx hy
   rw [hx, hy]
 
-/- ### SafeVerify-style audit for the disproof
-
-The next examples follow the same pattern used for `iteratedThinning_originalClaim.disproof`.
-If `disjoint_without_infinite_claim` is ever modified out of sync with the disproof,
-the build will fail at these explicit type assertions. -/
-
-/-- SafeVerify-style check: explicit type assertion that the disproof has the
-negation type. -/
+/-- Type assertion: the disproof has the negation type. If the claim definition
+drifts out of sync, this line fails to elaborate. -/
 @[category research solved, AMS 3]
 theorem disjoint_without_infinite_claim.type_check : ¬ disjoint_without_infinite_claim :=
-  disjoint_without_infinite_claim.disproof
-
-/-- SafeVerify-style alternate name: the claim is not provable (because it's false). -/
-@[category research solved, AMS 3]
-theorem disjoint_without_infinite_claim.not_provable :
-    disjoint_without_infinite_claim → False :=
   disjoint_without_infinite_claim.disproof
 
 end Erdos602
