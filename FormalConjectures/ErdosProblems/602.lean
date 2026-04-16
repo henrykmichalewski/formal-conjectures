@@ -466,10 +466,4 @@ theorem disjoint_without_infinite_claim.disproof :
   simp only [Set.mem_singleton_iff] at hx hy
   rw [hx, hy]
 
-/-- Type assertion: the disproof has the negation type. If the claim definition
-drifts out of sync, this line fails to elaborate. -/
-@[category research solved, AMS 3]
-theorem disjoint_without_infinite_claim.type_check : ¬ disjoint_without_infinite_claim :=
-  disjoint_without_infinite_claim.disproof
-
 end Erdos602
