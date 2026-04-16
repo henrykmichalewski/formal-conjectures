@@ -1,0 +1,264 @@
+/-
+Copyright 2025 The Formal Conjectures Authors.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-/
+
+import FormalConjectures.Util.ProblemImports
+
+/-!
+# Erdős Problem 595
+
+*Reference:* [erdosproblems.com/595](https://www.erdosproblems.com/595)
+
+*References for known results:*
+- [Er87] Erdős, Paul, Problems and results on set systems and hypergraphs. Extremal problems
+  for finite sets (Visegrád, 1991), Bolyai Soc. Math. Stud. (1994), 217-227.
+- [Fo70] Folkman, Jon, Graphs with monochromatic complete subgraphs in every edge coloring.
+  SIAM J. Appl. Math. (1970), 19:340-345.
+- [NeRo75] Nešetřil, Jaroslav and Rödl, Vojtěch, Type theory of partition problems of graphs.
+  Recent advances in graph theory (Proc. Second Czechoslovak Sympos., Prague, 1974),
+  Academia, Prague (1975), 405-412.
+
+## Overview
+
+**Problem (Erdős–Hajnal, $250)**: Is there an infinite graph $G$ which contains no $K_4$
+and is not the union of countably many triangle-free graphs?
+
+The "union of countably many triangle-free graphs" condition means that the edge set of $G$
+can be covered by countably many subgraphs, each of which is triangle-free (i.e., $K_3$-free).
+
+**Known (finite case):** Folkman [Fo70] and Nešetřil–Rödl [NeRo75] proved independently that
+for every $n \geq 1$ there exists a graph $G$ (which may be taken finite) that contains no $K_4$
+and whose edges cannot be coloured with $n$ colours such that each colour class is triangle-free.
+This means the *finite* version of the problem (with $n$ colours instead of countably many) has
+a positive answer.
+
+**Open question:** Whether the *infinite* version holds — i.e., whether a single graph can
+simultaneously be $K_4$-free and not expressible as a countable union of triangle-free graphs.
+
+See also [596] for the more general problem of which pairs $(G_1, G_2)$ exhibit this phenomenon.
+
+## Formalization note
+
+In `SimpleGraph V`, the complete lattice structure allows forming countable suprema
+`⨆ i : ℕ, H i`. The key lemma `SimpleGraph.iSup_adj` states:
+`(⨆ i, H i).Adj a b ↔ ∃ i, (H i).Adj a b`.
+We use this to define `IsCountableUnionOfTriangleFree G` as the existence of a family
+`H : ℕ → SimpleGraph V` of triangle-free graphs with `G = ⨆ i, H i`.
+-/
+
+open SimpleGraph Set
+
+namespace Erdos595
+
+/-- A graph `G` on vertex type `V` is a **countable union of triangle-free graphs** if there
+exist graphs `H : ℕ → SimpleGraph V`, each triangle-free (`H i).CliqueFree 3`), whose
+edge-wise supremum (union) equals `G`. -/
+def IsCountableUnionOfTriangleFree {V : Type*} (G : SimpleGraph V) : Prop :=
+  ∃ H : ℕ → SimpleGraph V, (∀ i, (H i).CliqueFree 3) ∧ G = ⨆ i, H i
+
+/-
+## Main open problem
+-/
+
+/--
+**Erdős Problem 595 ($250)**: Is there an infinite graph $G$ which contains no $K_4$ and is
+not the union of countably many triangle-free graphs?
+
+A problem of Erdős and Hajnal [Er87].
+
+**Formalization:** We ask for the existence of an infinite type `V` (witnessed by `[Infinite V]`)
+and a `SimpleGraph V` that is $K_4$-free (`G.CliqueFree 4`) but not a countable union of
+triangle-free graphs.
+
+**Prize:** \$250 (see erdosproblems.com/595).
+
+**Status:** OPEN.
+
+**Known (Folkman [Fo70], Nešetřil–Rödl [NeRo75]):** For every finite `n ≥ 1`, there exists a
+graph (even a finite one) that is $K_4$-free but not a union of `n` triangle-free graphs. This
+is the variant `erdos_595.variants.folkman_finite`. However, whether `n` can be replaced by
+`ℵ₀` (countably infinite) is the content of this open problem.
+-/
+@[category research open, AMS 5]
+theorem erdos_595 : answer(sorry) ↔
+    ∃ (V : Type*) (_ : Infinite V) (G : SimpleGraph V),
+      G.CliqueFree 4 ∧ ¬IsCountableUnionOfTriangleFree G := by
+  sorry
+
+/-
+## Variants and partial results
+-/
+
+/--
+**Folkman–Nešetřil–Rödl (finite version) [Fo70, NeRo75]**: For every `n ≥ 1`, there exists a
+graph `G` (on a finite vertex set) that contains no $K_4$ and whose edges cannot be covered by
+`n` triangle-free graphs.
+
+More precisely: for every `n : ℕ` with `1 ≤ n`, there exist a finite type `V` and a graph
+`G : SimpleGraph V` with:
+1. `G.CliqueFree 4` (no $K_4$), and
+2. For every family `H : Fin n → SimpleGraph V` of triangle-free graphs, `G ≠ ⨆ i, H i`.
+
+This is the finite analogue of Problem 595. The proofs of Folkman [Fo70] and Nešetřil–Rödl
+[NeRo75] give different explicit constructions.
+-/
+@[category research solved, AMS 5]
+theorem erdos_595.variants.folkman_finite : answer(True) ↔
+    ∀ n : ℕ, 1 ≤ n →
+    ∃ (V : Type*) (_ : Fintype V) (G : SimpleGraph V),
+      G.CliqueFree 4 ∧
+      ∀ (H : Fin n → SimpleGraph V), (∀ i, (H i).CliqueFree 3) → G ≠ ⨆ i, H i := by
+  simp only [true_iff]
+  -- Folkman [Fo70] and Nešetřil–Rödl [NeRo75]: explicit construction exists.
+  sorry
+
+/--
+**Monotonicity**: If `G` is a countable union of triangle-free graphs and `H ≤ G` (i.e., `H` is
+a subgraph of `G`), then `H` is also a countable union of triangle-free graphs.
+
+**Proof**: If `G = ⨆ i, G_i` with each `G_i` triangle-free, then `H = ⨆ i, H ⊓ G_i`.
+Each `H ⊓ G_i` is triangle-free because it is a subgraph of `G_i`.
+-/
+@[category undergraduate, AMS 5]
+theorem erdos_595.variants.subgraph_of_countable_union
+    {V : Type*} {G H : SimpleGraph V}
+    (hH : H ≤ G) (hG : IsCountableUnionOfTriangleFree G) :
+    IsCountableUnionOfTriangleFree H := by
+  obtain ⟨f, hf_free, hf_eq⟩ := hG
+  refine ⟨fun i => H ⊓ f i, fun i => (hf_free i).anti inf_le_right, ?_⟩
+  ext a b
+  simp only [iSup_adj, inf_adj]
+  constructor
+  · intro hab
+    have habG : G.Adj a b := hH hab
+    rw [hf_eq, iSup_adj] at habG
+    obtain ⟨i, hi⟩ := habG
+    exact ⟨i, hab, hi⟩
+  · rintro ⟨i, hHab, _⟩
+    exact hHab
+
+/--
+**Triangle-free graphs are trivially countable unions of triangle-free graphs**: if `G` is
+already triangle-free, then `G = ⨆ i : ℕ, G_i` where `G_0 = G` and `G_i = ⊥` for `i ≥ 1`.
+-/
+@[category undergraduate, AMS 5]
+theorem erdos_595.variants.triangle_free_is_union
+    {V : Type*} (G : SimpleGraph V) (hG : G.CliqueFree 3) :
+    IsCountableUnionOfTriangleFree G := by
+  refine ⟨fun i => if i = 0 then G else ⊥, fun i => ?_, ?_⟩
+  · by_cases h : i = 0
+    · simp [h, hG]
+    · simp [h, cliqueFree_bot (by norm_num : 2 ≤ 3)]
+  · ext a b
+    simp only [iSup_adj]
+    constructor
+    · intro hab
+      exact ⟨0, by simp [hab]⟩
+    · rintro ⟨i, hi⟩
+      by_cases h : i = 0
+      · simp [h] at hi; exact hi
+      · simp [h] at hi
+
+/--
+**The complete graph `⊤` on `ℕ` is a countable union of triangle-free graphs**: we decompose
+it into the family of star graphs `{H_m}_{m : ℕ}`, where `H_m` is the graph with edges `{m, n}`
+for all `n ≠ m`. Each star is triangle-free (any two non-center vertices share no edge within
+the star), and their union covers all edges of `⊤`.
+
+**Proof sketch (star triangle-free):** If `{a, b, c}` were a triangle in `H_m`, then each of
+the three edges `{a, b}`, `{a, c}`, `{b, c}` would pass through `m`. In particular, from
+`{a, b}` we get `a = m` or `b = m`; from `{b, c}` we get `b = m` or `c = m`. Case analysis
+shows that two vertices must equal `m`, contradicting the triangle having three distinct vertices.
+-/
+@[category undergraduate, AMS 5]
+theorem erdos_595.variants.complete_nat_is_union :
+    IsCountableUnionOfTriangleFree (⊤ : SimpleGraph ℕ) := by
+  -- Star at m: edges are all {a, b} where a = m or b = m (and a ≠ b, by SimpleGraph.fromRel).
+  refine ⟨fun m => SimpleGraph.fromRel (fun (a b : ℕ) => a = m ∨ b = m),
+          fun m => ?_, ?_⟩
+  · -- Each star H_m is triangle-free.
+    rw [CliqueFree]
+    intro s hs
+    simp only [isNClique_iff] at hs
+    obtain ⟨hs_clique, hs_card⟩ := hs
+    rw [isClique_iff] at hs_clique
+    obtain ⟨a, b, c, hab, hac, hbc, hs_eq⟩ := Finset.card_eq_three.mp hs_card
+    -- Extract membership in s.
+    have ha : a ∈ s := hs_eq ▸ Finset.mem_insert_self a _
+    have hb : b ∈ s := hs_eq ▸ Finset.mem_insert.mpr
+                        (Or.inr (Finset.mem_insert_self b _))
+    have hc : c ∈ s := hs_eq ▸ Finset.mem_insert.mpr
+                        (Or.inr (Finset.mem_insert.mpr (Or.inr (Finset.mem_singleton_self c))))
+    -- Each pair is adjacent in H_m.
+    have hab_adj := hs_clique ha hb hab
+    have hac_adj := hs_clique ha hc hac
+    have hbc_adj := hs_clique hb hc hbc
+    -- fromRel_adj: (fromRel r).Adj x y ↔ x ≠ y ∧ (r x y ∨ r y x)
+    -- For r x y = (x = m ∨ y = m): r x y ∨ r y x simplifies to x = m ∨ y = m.
+    simp only [fromRel_adj] at hab_adj hac_adj hbc_adj
+    -- Extract "a = m or b = m", "a = m or c = m", "b = m or c = m".
+    have ham_or_bm : a = m ∨ b = m := hab_adj.2.elim id Or.symm
+    have ham_or_cm : a = m ∨ c = m := hac_adj.2.elim id Or.symm
+    have hbm_or_cm : b = m ∨ c = m := hbc_adj.2.elim id Or.symm
+    -- Case analysis: whichever vertex equals m forces another to equal m as well,
+    -- contradicting distinctness.
+    rcases ham_or_bm with rfl | rfl
+    · -- a = m
+      rcases hbm_or_cm with rfl | rfl
+      · exact absurd rfl hab   -- b = a = m
+      · exact absurd rfl hac   -- c = a = m
+    · -- b = m
+      rcases ham_or_cm with rfl | rfl
+      · exact hab.symm rfl  -- a = b = m, so a = m and b = m, contradiction
+      · exact hbc rfl       -- c = b = m, so b = c, contradiction
+  · -- The union ⨆ m, H_m equals ⊤.
+    ext a b
+    simp only [iSup_adj, fromRel_adj, top_adj]
+    -- Goal: a ≠ b ↔ ∃ m, a ≠ b ∧ ((a = m ∨ b = m) ∨ (b = m ∨ a = m))
+    exact ⟨fun hab => ⟨a, hab, Or.inl (Or.inl rfl)⟩,
+           fun ⟨_, hne, _⟩ => hne⟩
+
+/--
+**The complete graph `⊤` on `Fin 4` is not $K_4$-free**: `⊤` on `Fin 4` equals the complete
+graph $K_4$, so it contains $K_4$ as a subgraph and is not $K_4$-free.
+
+This sanity check confirms the $K_4$-free hypothesis of Problem 595 is non-trivial.
+-/
+@[category undergraduate, AMS 5]
+theorem erdos_595.variants.K4_not_cliqueFree :
+    ¬ (⊤ : SimpleGraph (Fin 4)).CliqueFree 4 := by
+  rw [not_cliqueFree_iff]
+  exact ⟨(Iso.completeGraph (Fintype.equivFin (Fin 4))).symm.toEmbedding⟩
+
+/--
+**Reformulation via edge colourings**: A graph `G` is a countable union of triangle-free graphs
+if and only if there is a colouring of the edges of `G` by `ℕ` such that no monochromatic
+triangle exists.
+
+More precisely: `IsCountableUnionOfTriangleFree G` is equivalent to the existence of a map
+`c : ℕ → SimpleGraph V` with each `c n` triangle-free, whose union is `G` — which is exactly
+the definition. This variant restates the definition in terms of an edge-colouring function:
+a map from each edge of `G` to a natural number (the "colour"), such that for each colour `n`,
+the subgraph of edges coloured `n` is triangle-free.
+-/
+@[category research open, AMS 5]
+theorem erdos_595.variants.reformulation_edge_colouring {V : Type*} (G : SimpleGraph V) :
+    IsCountableUnionOfTriangleFree G ↔
+    ∃ c : G.edgeSet → ℕ,
+      ∀ n : ℕ,
+        (SimpleGraph.fromEdgeSet {e | ∃ h : e ∈ G.edgeSet, c ⟨e, h⟩ = n}).CliqueFree 3 := by
+  sorry
+
+end Erdos595
