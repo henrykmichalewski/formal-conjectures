@@ -1,5 +1,5 @@
 /-
-Copyright 2025 The Formal Conjectures Authors.
+Copyright 2026 The Formal Conjectures Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -62,9 +62,6 @@ open SimpleGraph Set
 
 namespace Erdos595
 
-/-- A graph `G` on vertex type `V` is a **countable union of triangle-free graphs** if there
-exist graphs `H : ℕ → SimpleGraph V`, each triangle-free (`H i).CliqueFree 3`), whose
-edge-wise supremum (union) equals `G`. -/
 def IsCountableUnionOfTriangleFree {V : Type*} (G : SimpleGraph V) : Prop :=
   ∃ H : ℕ → SimpleGraph V, (∀ i, (H i).CliqueFree 3) ∧ G = ⨆ i, H i
 
@@ -248,17 +245,44 @@ if and only if there is a colouring of the edges of `G` by `ℕ` such that no mo
 triangle exists.
 
 More precisely: `IsCountableUnionOfTriangleFree G` is equivalent to the existence of a map
-`c : ℕ → SimpleGraph V` with each `c n` triangle-free, whose union is `G` — which is exactly
-the definition. This variant restates the definition in terms of an edge-colouring function:
-a map from each edge of `G` to a natural number (the "colour"), such that for each colour `n`,
-the subgraph of edges coloured `n` is triangle-free.
+`c : G.edgeSet → ℕ` such that for each `n : ℕ`, the subgraph of edges coloured `n` is triangle-free.
 -/
-@[category research open, AMS 5]
+@[category test, AMS 5]
 theorem erdos_595.variants.reformulation_edge_colouring {V : Type*} (G : SimpleGraph V) :
     IsCountableUnionOfTriangleFree G ↔
     ∃ c : G.edgeSet → ℕ,
       ∀ n : ℕ,
         (SimpleGraph.fromEdgeSet {e | ∃ h : e ∈ G.edgeSet, c ⟨e, h⟩ = n}).CliqueFree 3 := by
-  sorry
+  -- Note: `c : G.edgeSet → ℕ` is exactly `EdgeLabeling G ℕ`, and the `fromEdgeSet` expression
+  -- is exactly `EdgeLabeling.labelGraph c n`. We use `EdgeLabeling.iSup_labelGraph` for (←).
+  constructor
+  · -- (→): Given H : ℕ → SimpleGraph V with G = ⨆ H i and each H i triangle-free,
+    -- construct c : G.edgeSet → ℕ by choosing some i containing each edge classically.
+    rintro ⟨H, hH_free, hH_eq⟩
+    -- For each edge e = s(a,b) of G, use iSup_adj to find some H i containing it.
+    -- We use Sym2.ind to destructure e into s(a,b) form and then apply mem_edgeSet + iSup_adj.
+    have hcov : ∀ e : G.edgeSet, ∃ i, (e : Sym2 V) ∈ (H i).edgeSet :=
+      fun ⟨e, he⟩ => Sym2.ind (fun a b he => by
+        rw [hH_eq, mem_edgeSet, iSup_adj] at he
+        exact he.imp fun i hi => hi) e he
+    -- Define c by classical choice of the covering index.
+    refine ⟨fun e => (hcov e).choose, fun n => ?_⟩
+    -- Show the subgraph of edges coloured n is a subgraph of H n, hence triangle-free.
+    apply (hH_free n).anti
+    intro x y hxy
+    rw [fromEdgeSet_adj] at hxy
+    obtain ⟨⟨h_mem, h_eq⟩, _⟩ := hxy
+    -- h_eq : (hcov ⟨s(x,y), h_mem⟩).choose = n
+    -- choose_spec gives s(x,y) ∈ (H (choose)).edgeSet; after rewriting with h_eq, in H n.
+    have hspec := (hcov ⟨s(x, y), h_mem⟩).choose_spec
+    simp only [h_eq] at hspec
+    exact hspec
+  · -- (←): Given c : G.edgeSet → ℕ, define H n = fromEdgeSet {e | ∃ h, c ⟨e,h⟩ = n}.
+    -- This is EdgeLabeling.labelGraph c n, so ⨆ n, H n = G by iSup_labelGraph.
+    rintro ⟨c, hc⟩
+    refine ⟨fun n => SimpleGraph.fromEdgeSet {e | ∃ h : e ∈ G.edgeSet, c ⟨e, h⟩ = n},
+            hc, ?_⟩
+    -- G = ⨆ n, (labelGraph c n) follows from EdgeLabeling.iSup_labelGraph.
+    exact (EdgeLabeling.iSup_labelGraph (G := G) c).symm
 
 end Erdos595
