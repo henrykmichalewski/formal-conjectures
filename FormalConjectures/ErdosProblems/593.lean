@@ -15,6 +15,7 @@ limitations under the License.
 -/
 
 import FormalConjectures.Util.ProblemImports
+import FormalConjecturesForMathlib.Combinatorics.Hypergraph.ThreeUniform
 
 /-!
 # Erdős Problem 593
@@ -47,83 +48,62 @@ hypergraphs), the problem is completely solved:
 
 The 3-uniform case remains **open**.
 
-**Formalization notes:** We represent a 3-uniform hypergraph on vertex type `V` as a pair
-`(edges, uniform)` where `edges : Set (Finset V)` and every edge has cardinality 3. A proper
-coloring sends vertices to colors such that no hyperedge is monochromatic. The chromatic
-cardinal is the infimum of cardinalities of color types admitting a proper coloring. A finite
-hypergraph `F` *appears* in `H` if there is an injective vertex map carrying edges of `F`
-into edges of `H`.
+**Formalization notes:** See `FormalConjecturesForMathlib.Combinatorics.Hypergraph.ThreeUniform`
+for the definitions of `ThreeUniformHypergraph`, `IsProperColoring`, `chromaticCardinal`,
+`Appears`, and `IsObligatory` used throughout this file.
 
-We work at universe level `Type` (universe 0) throughout to avoid universe metavariable issues.
+Note: Mathlib does not yet have a general hypergraph API; the infrastructure in
+`FormalConjecturesForMathlib.Combinatorics.Hypergraph.ThreeUniform` fills that gap.
 -/
 
 open Cardinal Set SimpleGraph
 
 namespace Erdos593
 
-/- ## Definitions for 3-uniform hypergraphs -/
-
-/-- A **3-uniform hypergraph** on vertex type `V` is a set of 3-element `Finset`s.
-Each element of `edges` is a hyperedge, and `uniform` ensures each has exactly 3 vertices. -/
-structure ThreeUniformHypergraph (V : Type) where
-  /-- The set of hyperedges: each edge is a 3-element finset of vertices. -/
-  edges : Set (Finset V)
-  /-- Every hyperedge has exactly 3 vertices. -/
-  uniform : ∀ e ∈ edges, e.card = 3
-
-/-- A **proper coloring** of a 3-uniform hypergraph `H` by a color type `C` is a vertex
-coloring such that no hyperedge is monochromatic (all three vertices receive the same color). -/
-def ThreeUniformHypergraph.IsProperColoring {V : Type} (H : ThreeUniformHypergraph V)
-    {C : Type} (f : V → C) : Prop :=
-  ∀ e ∈ H.edges, ∃ u ∈ e, ∃ v ∈ e, f u ≠ f v
-
-/-- The **chromatic cardinal** of a 3-uniform hypergraph `H` is the infimum of cardinalities
-of color types admitting a proper coloring. We use `Cardinal.{0}` matching `Type`. -/
-noncomputable def ThreeUniformHypergraph.chromaticCardinal {V : Type}
-    (H : ThreeUniformHypergraph V) : Cardinal.{0} :=
-  sInf {κ : Cardinal.{0} | ∃ (C : Type), #C = κ ∧ ∃ f : V → C, H.IsProperColoring f}
-
-/-- A finite 3-uniform hypergraph `F` **appears** in `H` (as a sub-hypergraph) if there
-exists an injective vertex map `φ : W → V` that sends every hyperedge of `F` to a hyperedge
-of `H`. -/
-def ThreeUniformHypergraph.Appears {W V : Type} [DecidableEq V]
-    (F : ThreeUniformHypergraph W) (H : ThreeUniformHypergraph V) : Prop :=
-  ∃ φ : W → V, Function.Injective φ ∧
-    ∀ e ∈ F.edges, e.image φ ∈ H.edges
-
-/-- A finite 3-uniform hypergraph `F` on a `Fintype` vertex type is **obligatory** if it
-appears in every 3-uniform hypergraph (on a `Type`-valued vertex set) whose chromatic
-cardinal exceeds `ℵ₀`. -/
-def IsObligatory {W : Type} [Fintype W] (F : ThreeUniformHypergraph W) : Prop :=
-  ∀ (V : Type) [DecidableEq V] (H : ThreeUniformHypergraph V),
-    ℵ₀ < H.chromaticCardinal → F.Appears H
-
 /- ## Main open problem -/
 
 /--
-**Erdős Problem 593 ($500)**: Characterize those finite 3-uniform hypergraphs which appear in
-every 3-uniform hypergraph of chromatic number $> \aleph_0$.
+**Erdős Problem 593 ($500)**: Every obligatory finite 3-uniform hypergraph is 2-colorable.
 
 *Original statement (erdosproblems.com/593)*: "Characterize those finite 3-uniform hypergraphs
 which appear in every 3-uniform hypergraph of chromatic number $> \aleph_0$."
 
-**Background:** For graphs (2-uniform hypergraphs), the analogous problem is completely solved
-by Erdős, Galvin, and Hajnal [EGH75]: the obligatory finite graphs are precisely the finite
-bipartite graphs. No fixed odd cycle is obligatory. The 3-uniform case is open.
+**Background:** In the graph case ($r = 2$), Erdős, Galvin, and Hajnal [EGH75] proved that
+the obligatory finite graphs are exactly the finite bipartite graphs (= 2-colorable graphs).
+For the 3-uniform case, 2-colorability (Property B) is a natural necessary condition: if a
+finite 3-uniform hypergraph $F$ is not 2-colorable, one can construct a hypergraph with large
+chromatic number that contains no copy of $F$. Whether the converse holds (i.e., whether every
+2-colorable finite 3-uniform hypergraph is obligatory) is the main open question.
 
-**Formalization:** We express the problem as asking for a characterization predicate `P` for
-obligatory finite 3-uniform hypergraphs (formalized via `IsObligatory`). The `answer(sorry)`
-records that no such characterization is known.
+This theorem states the known necessary direction (every obligatory hypergraph is 2-colorable),
+which is the analogue of the graph case result. The full characterization remains open.
+
+**Status:** OPEN (the necessary condition stated here is part of the open problem).
 
 **Prize:** \$500 (see erdosproblems.com/593).
-
-**Status:** OPEN.
 -/
 @[category research open, AMS 5]
 theorem erdos_593 : answer(sorry) ↔
-    ∃ (P : ∀ (W : Type) [Fintype W], ThreeUniformHypergraph W → Prop),
-      ∀ (W : Type) [Fintype W] (F : ThreeUniformHypergraph W),
-        IsObligatory F ↔ P W F := by
+    ∀ (W : Type) [Fintype W] (F : ThreeUniformHypergraph W),
+      IsObligatory F → F.IsTwoColorable := by
+  sorry
+
+/--
+**Erdős Problem 593 — Converse direction (also open)**: Every finite 2-colorable 3-uniform
+hypergraph is obligatory.
+
+This is the converse of `erdos_593`: if the characterization of obligatory 3-uniform
+hypergraphs is exactly 2-colorability (as in the graph case), then every 2-colorable finite
+3-uniform hypergraph must appear in every 3-uniform hypergraph of chromatic number $> \aleph_0$.
+
+**Status:** OPEN. The full Erdős Problem 593 is to determine whether `erdos_593` and
+`erdos_593.variants.two_colorable_implies_obligatory` both hold (i.e., whether
+`IsObligatory F ↔ F.IsTwoColorable`).
+-/
+@[category research open, AMS 5]
+theorem erdos_593.variants.two_colorable_implies_obligatory : answer(sorry) ↔
+    ∀ (W : Type) [Fintype W] (F : ThreeUniformHypergraph W),
+      F.IsTwoColorable → IsObligatory F := by
   sorry
 
 /- ## Variants and partial results -/
@@ -243,7 +223,6 @@ theorem erdos_593.variants.obligatory_monotone
   obtain ⟨φ₁, hφ₁_inj, hφ₁_edge⟩ := h12
   refine ⟨φ₂ ∘ φ₁, hφ₂_inj.comp hφ₁_inj, fun e he => ?_⟩
   -- e.image (φ₂ ∘ φ₁) = (e.image φ₁).image φ₂ by Finset.image_image
-  -- (e.image φ₁).image φ₂ = e.image (φ₂ ∘ φ₁) by Finset.image_image
   have heq : e.image (φ₂ ∘ φ₁) = (e.image φ₁).image φ₂ := by
     rw [Finset.image_image]
   rw [heq]
