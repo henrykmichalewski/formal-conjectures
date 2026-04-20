@@ -31,42 +31,6 @@ open SimpleGraph
 
 variable {α : Type*} [Fintype α] [DecidableEq α]
 
-/-
-## Definitions for well totally dominated graphs
-
-A *total dominating set* of `G` is a set `S` of vertices such that every vertex of `G`
-(including vertices in `S`) has a neighbor in `S`. A total dominating set `S` is
-*minimal* if no proper subset of `S` is also a total dominating set.
-
-A graph `G` is *well totally dominated* if every minimal total dominating set
-has the same cardinality; equivalently, the total domination number equals the
-maximum cardinality of a minimal total dominating set.
-
-The *pendant vertices* (also called *leaves*) of `G` are the vertices of degree 1.
--/
-
-/-- A set `S` is a total dominating set of `G` if every vertex has a neighbor in `S`. -/
-def IsTotalDominatingSet (G : SimpleGraph α) [DecidableRel G.Adj] (S : Finset α) : Prop :=
-  ∀ v : α, ∃ w ∈ S, G.Adj v w
-
-/-- A total dominating set `S` is minimal if no proper subset of `S` is also a
-total dominating set. -/
-def IsMinimalTotalDominatingSet (G : SimpleGraph α) [DecidableRel G.Adj] (S : Finset α) : Prop :=
-  IsTotalDominatingSet G S ∧
-  ∀ T : Finset α, T ⊂ S → ¬IsTotalDominatingSet G T
-
-/-- A graph `G` is well totally dominated if every minimal total dominating set
-has the same cardinality. -/
-def isWellTotallyDominated (G : SimpleGraph α) [DecidableRel G.Adj] : Prop :=
-  ∀ S T : Finset α,
-    IsMinimalTotalDominatingSet G S →
-    IsMinimalTotalDominatingSet G T →
-    S.card = T.card
-
-/-- The set of pendant vertices (leaves) of `G`: vertices of degree 1. -/
-noncomputable def pendantVertices (G : SimpleGraph α) [DecidableRel G.Adj] : Finset α :=
-  Finset.univ.filter (fun v => G.degree v = 1)
-
 /--
 WOWII [Conjecture 315](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 
@@ -76,7 +40,7 @@ Let `G` be a simple connected graph and let `P` denote the set of pendant vertic
 @[category research open, AMS 5]
 theorem conjecture315 (G : SimpleGraph α) [DecidableRel G.Adj] (hG : G.Connected)
     (h : G.indepNum = (pendantVertices G).card) :
-    isWellTotallyDominated G := by
+    IsWellTotallyDominated G := by
   sorry
 
 -- Sanity checks

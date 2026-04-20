@@ -29,11 +29,6 @@ open Classical SimpleGraph
 
 variable {α : Type*} [Fintype α] [DecidableEq α] [Nontrivial α]
 
-/-- The average eccentricity of a graph `G`: the mean of `eccentricity G v` over all vertices,
-converted to a real number. Returns 0 if the graph has no vertices. -/
-noncomputable def averageEccentricity (G : SimpleGraph α) : ℝ :=
-  (∑ v : α, (G.eccentricity v).toNat) / (Fintype.card α : ℝ)
-
 /--
 WOWII [Conjecture 198a](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 

@@ -15,8 +15,6 @@ limitations under the License.
 -/
 
 import FormalConjectures.Util.ProblemImports
-import FormalConjectures.WrittenOnTheWallII.GraphConjecture315
-
 /-!
 # Written on the Wall II - Conjecture 327
 
@@ -24,11 +22,9 @@ import FormalConjectures.WrittenOnTheWallII.GraphConjecture315
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 -/
 
-open Classical
-
 namespace WrittenOnTheWallII.GraphConjecture327
 
-open SimpleGraph WrittenOnTheWallII.GraphConjecture315
+open SimpleGraph
 
 variable {α : Type*} [Fintype α] [DecidableEq α]
 
@@ -42,7 +38,7 @@ the independent domination number of `G`.
 @[category research open, AMS 5]
 theorem conjecture327 (G : SimpleGraph α) [DecidableRel G.Adj] (hG : G.Connected)
     (h : 3 * G.dominationNumber = G.indepDominationNumber) :
-    isWellTotallyDominated G := by
+    IsWellTotallyDominated G := by
   sorry
 
 -- Sanity checks

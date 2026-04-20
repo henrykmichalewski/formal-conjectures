@@ -15,7 +15,6 @@ limitations under the License.
 -/
 
 import FormalConjectures.Util.ProblemImports
-import FormalConjectures.WrittenOnTheWallII.GraphConjecture315
 
 /-!
 # Written on the Wall II - Conjecture 322
@@ -28,7 +27,7 @@ open Classical
 
 namespace WrittenOnTheWallII.GraphConjecture322
 
-open SimpleGraph WrittenOnTheWallII.GraphConjecture315
+open SimpleGraph
 
 variable {α : Type*} [Fintype α] [DecidableEq α]
 
@@ -46,7 +45,7 @@ open neighborhood of `v`.
 theorem conjecture322 (G : SimpleGraph α) [DecidableRel G.Adj] (hG : G.Connected)
     (hn : 5 ≤ Fintype.card α)
     (h : ∀ v : α, indepNeighborsCard G v ≤ 1) :
-    isWellTotallyDominated G := by
+    IsWellTotallyDominated G := by
   sorry
 
 -- Sanity checks

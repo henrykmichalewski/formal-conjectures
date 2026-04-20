@@ -37,7 +37,7 @@ the size of a largest induced bipartite subgraph, `α(G)` is the independence nu
 and `M` is the set of maximum-degree vertices, and `dist_avg(M, V)` is the average
 distance from all vertices to `M`.
 -/
-@[category research open, AMS 5]
+@[category research solved, AMS 5]
 theorem conjecture22 (G : SimpleGraph α) [DecidableRel G.Adj] (h : G.Connected) :
     let M : Set α := {v | G.degree v = G.maxDegree}
     ⌊(G.indepNum : ℝ) + distavg G M⌋ ≤ (b G : ℝ) := by

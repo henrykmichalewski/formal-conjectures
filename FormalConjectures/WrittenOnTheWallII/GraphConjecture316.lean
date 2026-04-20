@@ -15,8 +15,6 @@ limitations under the License.
 -/
 
 import FormalConjectures.Util.ProblemImports
-import FormalConjectures.WrittenOnTheWallII.GraphConjecture315
-
 /-!
 # Written on the Wall II - Conjecture 316
 
@@ -24,11 +22,9 @@ import FormalConjectures.WrittenOnTheWallII.GraphConjecture315
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 -/
 
-open Classical
-
 namespace WrittenOnTheWallII.GraphConjecture316
 
-open SimpleGraph WrittenOnTheWallII.GraphConjecture315
+open SimpleGraph
 
 variable {α : Type*} [Fintype α] [DecidableEq α]
 
@@ -42,7 +38,7 @@ where `deg_avg(G)` is the average degree of `G`.
 @[category research open, AMS 5]
 theorem conjecture316 (G : SimpleGraph α) [DecidableRel G.Adj] (hG : G.Connected)
     (h : (averageDegree G : ℚ) ≤ (pendantVertices G).card) :
-    isWellTotallyDominated G := by
+    IsWellTotallyDominated G := by
   sorry
 
 -- Sanity checks
