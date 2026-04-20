@@ -29,32 +29,34 @@ open Classical SimpleGraph
 
 variable {α : Type*} [Fintype α] [DecidableEq α] [Nontrivial α]
 
+/-- `dp G` is the number of diametrical pairs of `G`: the number of unordered
+pairs `{u, v}` of vertices at distance `diam(G)`.  -/
+noncomputable def dp (G : SimpleGraph α) : ℕ :=
+  (Finset.univ.filter
+    (fun p : Sym2 α => p.lift ⟨fun u v => G.dist u v = G.diam ∧ u ≠ v,
+      fun u v => by simp [SimpleGraph.dist_comm, ne_comm]⟩)).card
+
 /--
 WOWII [Conjecture 36](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 
 For a simple connected graph `G`,
-`path(G) ≥ ⌈1 + √(n(G) mod Δ(Ḡ))⌉`
-where `path(G)` is the floor of the average distance, `n(G)` is the number of
-vertices, `Ḡ = Gᶜ` is the complement graph, and `Δ(Ḡ) = maxDegree(Ḡ)` is the
-maximum degree of the complement.  When `Δ(Ḡ) = 0` we interpret `n mod 0 = 0`
-(Lean's default natural number `%`).
+`path(G) ≥ 2 · rad(G) / dp(G)`,
+where `path(G)` is the floor of the average distance of `G`,
+`rad(G)` is the radius of `G`, and `dp(G)` is the number of *diametrical pairs*
+of `G` — that is, the number of pairs of vertices at distance `diam(G)`.
+
+WOWII status: disproved (Waller, Oct 2003:  path number 5, radius 3, dp 1).
 -/
 @[category research solved, AMS 5]
-theorem conjecture36 (G : SimpleGraph α) [DecidableRel G.Adj] (h : G.Connected) :
-    let Gc := Gᶜ
-    let deltaC := Gc.maxDegree
-    let nG := Fintype.card α
-    Int.ceil (1 + Real.sqrt ((nG % deltaC : ℕ) : ℝ)) ≤ (path G : ℤ) := by
+theorem conjecture36 (G : SimpleGraph α) [DecidableRel G.Adj] (h : G.Connected)
+    (hdp : 0 < dp G) :
+    (2 * G.radius.toNat : ℝ) / (dp G : ℝ) ≤ (path G : ℝ) := by
   sorry
 
 -- Sanity checks
 
-/-- The complement of `K₃` has max degree 0. -/
+/-- The `path G` invariant is nonneg. -/
 @[category test, AMS 5]
-example : (⊤ : SimpleGraph (Fin 3))ᶜ.maxDegree = 0 := by decide +native
-
-/-- The `path G` invariant cast to ℤ is nonneg. -/
-@[category test, AMS 5]
-example (G : SimpleGraph (Fin 3)) : 0 ≤ (path G : ℤ) := Int.natCast_nonneg _
+example (G : SimpleGraph (Fin 3)) : 0 ≤ (path G : ℝ) := Nat.cast_nonneg _
 
 end WrittenOnTheWallII.GraphConjecture36

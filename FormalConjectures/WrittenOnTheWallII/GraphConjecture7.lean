@@ -22,13 +22,11 @@ import FormalConjectures.Util.ProblemImports
 *Reference:*
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 
-## Definitions
-
-This file introduces `matchingNumber G`, the size of a maximum matching of `G`,
-as an integer-valued invariant (the existing `m G` returns a real number).
-The two agree: `matchingNumber G = m G` for connected graphs.
-
-**Conjecture 7:** For a connected graph `G`, `Ls(G) ≥ 1 + α(G) − m(G)`.
+**Conjecture 7:** For a connected graph `G`,
+`Ls(G) ≥ max_v λ(v) - 1 + n - 2 α(G)`,
+where `Ls(G)` is the maximum number of leaves over all spanning trees,
+`n = |V(G)|`, `α(G) = G.indepNum`, and `λ(v) = indepNeighborsCard G v` is the
+independence number of the neighbourhood of `v`.
 -/
 
 namespace WrittenOnTheWallII.GraphConjecture7
@@ -37,49 +35,28 @@ open Classical SimpleGraph
 
 variable {α : Type*} [Fintype α] [DecidableEq α] [Nontrivial α]
 
-/-- `matchingNumber G` is the size of a maximum matching of `G`,
-returned as a natural number.  A *matching* is a set of pairwise
-vertex-disjoint edges; the matching number is the maximum cardinality
-of such a set. -/
-noncomputable def matchingNumber (G : SimpleGraph α) [DecidableRel G.Adj] : ℕ :=
-  let matchings := { M : Subgraph G | M.IsMatching }
-  sSup (Set.image (fun M => M.edgeSet.toFinset.card) matchings)
-
 /--
 WOWII [Conjecture 7](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 
 For a simple connected graph `G`,
-`Ls(G) ≥ 1 + α(G) − m(G)`
-where `Ls(G)` is the maximum number of leaves over all spanning trees,
-`α(G) = G.indepNum` is the independence number, and
-`m(G)` is the size of a maximum matching.
+`L_s(G) ≥ max_v λ(v) - 1 + n - 2 α(G)`,
+where `L_s(G)` is the maximum number of leaves over all spanning trees of `G`,
+`n = |V(G)|`, `α(G) = G.indepNum` is the independence number, and
+`λ(v) = indepNeighborsCard G v` is the independence number of the neighbourhood
+of `v`.
+
+WOWII status: proved (DeLaVina, Fajtlowicz, Waller (2002)).
 -/
 @[category research solved, AMS 5]
 theorem conjecture7 (G : SimpleGraph α) [DecidableRel G.Adj] (h : G.Connected) :
-    1 + (G.indepNum : ℝ) - m G ≤ Ls G := by
+    let maxL := (Finset.univ.image (fun v => indepNeighborsCard G v)).max' (by simp)
+    ((maxL : ℤ) - 1 + (Fintype.card α : ℤ) - 2 * (G.indepNum : ℤ) : ℝ) ≤ Ls G := by
   sorry
 
 -- Sanity checks
 
-/-- In the complete graph `K₃`, every edge is in a matching of size 1,
-so `matchingNumber K₃ = 1`. -/
+/-- The independence number is nonneg. -/
 @[category test, AMS 5]
-example : matchingNumber (⊤ : SimpleGraph (Fin 3)) = 1 := by
-  unfold matchingNumber
-  sorry
-
-/-- In the path graph `P₃` (edges 0–1 and 1–2), the maximum matching has size 1
-(we can pick either edge, but the two edges share vertex 1). -/
-@[category test, AMS 5]
-example : matchingNumber
-    (SimpleGraph.fromEdgeSet {s(0, 1), s(1, 2)} : SimpleGraph (Fin 3)) = 1 := by
-  unfold matchingNumber
-  sorry
-
-/-- In the complete graph `K₄`, a perfect matching has 2 edges, so `matchingNumber K₄ = 2`. -/
-@[category test, AMS 5]
-example : matchingNumber (⊤ : SimpleGraph (Fin 4)) = 2 := by
-  unfold matchingNumber
-  sorry
+example (G : SimpleGraph (Fin 3)) : 0 ≤ G.indepNum := Nat.zero_le _
 
 end WrittenOnTheWallII.GraphConjecture7
