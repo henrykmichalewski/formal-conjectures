@@ -58,7 +58,7 @@ and `alphaCore(G)` is the set of vertices whose removal decreases the independen
 This is a theorem known to follow from inclusion-exclusion principles; it is listed as
 open (status O) in DeLaVina's list.
 -/
-@[category research open, AMS 5]
+@[category research solved, AMS 5]
 theorem conjecture101 (G : SimpleGraph α) [DecidableRel G.Adj] (h : G.Connected) :
     G.indepNum ≤ (Fintype.card α + (alphaCore G).card) / 2 := by
   sorry

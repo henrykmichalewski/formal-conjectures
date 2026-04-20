@@ -49,7 +49,7 @@ minimum-degree vertices, `M` is the set of maximum-degree vertices,
 `distavg(G, A)` is the average distance from all vertices to `A`, and
 `eccavg(M)` is the average eccentricity of the vertices in `M`.
 -/
-@[category research open, AMS 5]
+@[category research solved, AMS 5]
 theorem conjecture31 (G : SimpleGraph α) [DecidableRel G.Adj] (h : G.Connected) :
     let A : Set α := {v | G.degree v = G.minDegree}
     let M : Set α := {v | G.degree v = G.maxDegree}

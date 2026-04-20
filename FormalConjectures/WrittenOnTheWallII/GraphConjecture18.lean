@@ -45,7 +45,7 @@ satisfies `b(G) ≥ α(G) + ⌈√(dist_max(M))⌉`, where `α(G)` is the indepe
 and `M` is the set of maximum-degree vertices, and `dist_max(M)` is the maximum over
 all vertices of the minimum distance from that vertex to `M`.
 -/
-@[category research open, AMS 5]
+@[category research solved, AMS 5]
 theorem conjecture18 (G : SimpleGraph α) [DecidableRel G.Adj] (h : G.Connected) :
     let M : Set α := {v | G.degree v = G.maxDegree}
     (G.indepNum : ℝ) + ⌈Real.sqrt (distMax G M : ℝ)⌉ ≤ b G := by

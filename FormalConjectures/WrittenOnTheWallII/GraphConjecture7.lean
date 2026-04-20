@@ -54,7 +54,7 @@ where `Ls(G)` is the maximum number of leaves over all spanning trees,
 `α(G) = G.indepNum` is the independence number, and
 `m(G)` is the size of a maximum matching.
 -/
-@[category research open, AMS 5]
+@[category research solved, AMS 5]
 theorem conjecture7 (G : SimpleGraph α) [DecidableRel G.Adj] (h : G.Connected) :
     1 + (G.indepNum : ℝ) - m G ≤ Ls G := by
   sorry

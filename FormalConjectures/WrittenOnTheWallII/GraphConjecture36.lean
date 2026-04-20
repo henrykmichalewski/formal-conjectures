@@ -39,7 +39,7 @@ vertices, `Ḡ = Gᶜ` is the complement graph, and `Δ(Ḡ) = maxDegree(Ḡ)` i
 maximum degree of the complement.  When `Δ(Ḡ) = 0` we interpret `n mod 0 = 0`
 (Lean's default natural number `%`).
 -/
-@[category research open, AMS 5]
+@[category research solved, AMS 5]
 theorem conjecture36 (G : SimpleGraph α) [DecidableRel G.Adj] (h : G.Connected) :
     let Gc := Gᶜ
     let deltaC := Gc.maxDegree
