@@ -44,7 +44,7 @@ where `b(G)` is the largest induced bipartite subgraph size,
 of the neighbourhood of `v`, and `distEven(v)` is the number of vertices at even
 distance from `v`.
 -/
-@[category research open, AMS 5]
+@[category research solved, AMS 5]
 theorem conjecture23 (G : SimpleGraph α) (h : G.Connected) :
     let maxL := (Finset.univ.image (fun v => indepNeighborsCard G v)).max' (by simp)
     let minDistEven := (Finset.univ.image (distEven G)).min' (by simp)
