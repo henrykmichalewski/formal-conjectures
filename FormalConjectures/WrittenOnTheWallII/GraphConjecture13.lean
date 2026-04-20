@@ -38,7 +38,7 @@ satisfies `b(G) ≥ diam(G) + max_{v ∈ V} l(v) - 1`, where `diam(G)` is the di
 of `G` and `l(v) = indepNeighborsCard G v` is the independence number of the
 neighbourhood of `v`.
 -/
-@[category research open, AMS 5]
+@[category research solved, AMS 5]
 theorem conjecture13 (G : SimpleGraph α) (h : G.Connected) :
     letI maxL := (Finset.univ.image (fun v => indepNeighborsCard G v)).max' (by simp)
     (G.diam : ℝ) + (maxL : ℝ) - 1 ≤ b G := by

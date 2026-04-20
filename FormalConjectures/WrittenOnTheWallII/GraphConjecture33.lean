@@ -37,7 +37,7 @@ where `path(G)` is the floor of the average distance of `G`, `C` is the set of c
 vertices (those with minimum eccentricity), `M` is the set of maximum-degree vertices,
 and `dist_avg(S, V)` is the average distance from all vertices to the set `S`.
 -/
-@[category research open, AMS 5]
+@[category research solved, AMS 5]
 theorem conjecture33 (G : SimpleGraph α) [DecidableRel G.Adj] (h : G.Connected) :
     let C : Set α := graphCenter G
     let M : Set α := {v | G.degree v = G.maxDegree}

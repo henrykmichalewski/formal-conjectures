@@ -38,7 +38,7 @@ satisfies `b(G) ≥ 2 * (rad(G) - 1) + max_{v ∈ V} l(v)`, where `rad(G)` is th
 of `G` (the minimum eccentricity) and `l(v) = indepNeighborsCard G v` is the independence
 number of the neighbourhood of `v`.
 -/
-@[category research open, AMS 5]
+@[category research solved, AMS 5]
 theorem conjecture16 (G : SimpleGraph α) (h : G.Connected) :
     letI maxL := (Finset.univ.image (fun v => indepNeighborsCard G v)).max' (by simp)
     letI r := G.radius.toNat

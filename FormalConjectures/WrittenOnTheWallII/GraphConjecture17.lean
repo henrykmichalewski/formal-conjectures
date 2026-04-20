@@ -37,7 +37,7 @@ For a simple connected graph `G`, the size `b(G)` of a largest induced bipartite
 satisfies `b(G) ≥ α(G) + ⌈diam(G) / 3⌉`, where `α(G)` is the independence number of `G`
 and `diam(G)` is the diameter of `G`.
 -/
-@[category research open, AMS 5]
+@[category research solved, AMS 5]
 theorem conjecture17 (G : SimpleGraph α) (h : G.Connected) :
     (G.indepNum : ℝ) + ⌈(G.diam : ℝ) / 3⌉ ≤ b G := by
   sorry

@@ -36,7 +36,7 @@ For a simple connected graph `G`, `path(G) ≥ ⌈2 · dist_avg(M, V)⌉`, where
 is the floor of the average distance of `G`, `M` is the set of maximum-degree vertices,
 and `dist_avg(M, V)` is the average distance from all vertices to `M`.
 -/
-@[category research open, AMS 5]
+@[category research solved, AMS 5]
 theorem conjecture32 (G : SimpleGraph α) [DecidableRel G.Adj] (h : G.Connected) :
     let M : Set α := {v | G.degree v = G.maxDegree}
     Int.ceil (2 * distavg G M) ≤ (path G : ℤ) := by

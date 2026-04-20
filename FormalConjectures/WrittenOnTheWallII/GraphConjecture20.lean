@@ -36,7 +36,7 @@ For a simple connected graph `G`, `b(G) ≥ n(G) / ⌊deg_avg(G)⌋`, where `b(G
 the size of a largest induced bipartite subgraph, `n(G)` is the number of vertices,
 and `deg_avg(G) = (∑ v, deg(v)) / n(G)` is the average degree.
 -/
-@[category research open, AMS 5]
+@[category research solved, AMS 5]
 theorem conjecture20 (G : SimpleGraph α) [DecidableRel G.Adj] (h : G.Connected) :
     let deg_avg : ℝ := (∑ v : α, (G.degree v : ℝ)) / (Fintype.card α : ℝ)
     n G / ⌊deg_avg⌋ ≤ b G := by
