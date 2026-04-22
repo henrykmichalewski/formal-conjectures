@@ -19,6 +19,12 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Written on the Wall II - Conjecture 59
 
+**Verbatim statement (WOWII #59, status O):**
+> If G is a simple connected graph, then f(G) ≥ CEIL[sqrt[res(G)*b(G)]]
+
+**Source:** http://cms.uhd.edu/faculty/delavinae/research/wowII/all.html#conj59
+
+
 *Reference:*
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 -/

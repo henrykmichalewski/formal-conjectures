@@ -20,6 +20,12 @@ import FormalConjectures.WrittenOnTheWallII.GraphConjecture133
 /-!
 # Written on the Wall II - Conjecture 160
 
+**Verbatim statement (WOWII #160, status O):**
+> If G is a simple connected graph, then L_s(G) ≥ maximum of l(v) + maximum T(v)*χ_C4(G).
+
+**Source:** http://cms.uhd.edu/faculty/delavinae/research/wowII/all.html#conj160
+
+
 *Reference:*
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 

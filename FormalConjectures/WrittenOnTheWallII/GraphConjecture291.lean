@@ -20,6 +20,12 @@ import FormalConjectures.WrittenOnTheWallII.GraphConjecture315
 /-!
 # Written on the Wall II - Conjecture 291
 
+**Verbatim statement (WOWII #291, status O):**
+> If G is a simple connected graph such that n(G)> 2, then γ_t(G) ≤ k + frequency t_min(v), where k is the first step in which a zero appears in the Havil-Hakimi process.
+
+**Source:** http://cms.uhd.edu/faculty/delavinae/research/wowII/all.html#conj291
+
+
 *Reference:*
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 

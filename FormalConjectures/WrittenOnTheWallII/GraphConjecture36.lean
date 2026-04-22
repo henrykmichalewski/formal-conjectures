@@ -19,6 +19,12 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Written on the Wall II - Conjecture 36
 
+**Verbatim statement (WOWII #36, status F):**
+> If G is a simple connected graph, then path(G) ≥ 2rad(G)/dp(G)
+
+**Source:** http://cms.uhd.edu/faculty/delavinae/research/wowII/all.html#conj36
+
+
 *Reference:*
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 -/

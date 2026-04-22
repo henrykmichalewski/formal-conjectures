@@ -19,6 +19,12 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Written on the Wall II - Conjecture 31
 
+**Verbatim statement (WOWII #31, status R):**
+> If G is a simple connected graph, then path(G) ≥ 2rad(G) - 1
+
+**Source:** http://cms.uhd.edu/faculty/delavinae/research/wowII/all.html#conj31
+
+
 *Reference:*
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 -/

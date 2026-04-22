@@ -19,6 +19,12 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Written on the Wall II - Conjecture 133
 
+**Verbatim statement (WOWII #133, status O):**
+> If G is a simple connected graph, then path(G) ≥ rad(G)+ [average of λ(v)]^^χC4
+
+**Source:** http://cms.uhd.edu/faculty/delavinae/research/wowII/all.html#conj133
+
+
 *Reference:*
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 

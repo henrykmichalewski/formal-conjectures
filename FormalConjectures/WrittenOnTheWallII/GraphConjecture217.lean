@@ -19,6 +19,12 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Written on the Wall II - Conjecture 217
 
+**Verbatim statement (WOWII #217, status O):**
+> If G is a simple connected graph with n > 1 such that L(G) ≤ 4*χ_residue=2(G) + 2, then G has a Hamiltonian path.
+
+**Source:** http://cms.uhd.edu/faculty/delavinae/research/wowII/all.html#conj217
+
+
 *Reference:*
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 

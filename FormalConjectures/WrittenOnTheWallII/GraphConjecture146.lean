@@ -20,6 +20,12 @@ import FormalConjectures.WrittenOnTheWallII.GraphConjecture145
 /-!
 # Written on the Wall II - Conjecture 146
 
+**Verbatim statement (WOWII #146, status O):**
+> If G is a simple connected graph, then tree(G) ≥ 2*ecc(B)/rad(G^2)
+
+**Source:** http://cms.uhd.edu/faculty/delavinae/research/wowII/all.html#conj146
+
+
 *Reference:*
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 

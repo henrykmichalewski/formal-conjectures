@@ -19,6 +19,12 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Written on the Wall II - Conjecture 101
 
+**Verbatim statement (WOWII #101, status T):**
+> If G is a simple connected graph, then α(G) ≤ FLOOR[(n + alphacore(G))/2]
+
+**Source:** http://cms.uhd.edu/faculty/delavinae/research/wowII/all.html#conj101
+
+
 *Reference:*
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 

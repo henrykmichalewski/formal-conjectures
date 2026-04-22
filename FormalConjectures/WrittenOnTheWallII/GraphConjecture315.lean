@@ -19,6 +19,12 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Written on the Wall II - Conjecture 315
 
+**Verbatim statement (WOWII #315, status O):**
+> Let G is a simple connected graph with n > 1. Let P be the pendant vertices of G. If α(G) = |P|, then G is well total dominated.
+
+**Source:** http://cms.uhd.edu/faculty/delavinae/research/wowII/all.html#conj315
+
+
 *Reference:*
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 -/

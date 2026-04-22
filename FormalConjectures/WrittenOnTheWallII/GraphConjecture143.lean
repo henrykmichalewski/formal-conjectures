@@ -19,6 +19,12 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Written on the Wall II - Conjecture 143
 
+**Verbatim statement (WOWII #143, status O):**
+> If G is a simple connected graph, then tree(G) ≥ (girth + 1)/σ(G)
+
+**Source:** http://cms.uhd.edu/faculty/delavinae/research/wowII/all.html#conj143
+
+
 *Reference:*
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 -/

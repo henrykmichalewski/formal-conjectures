@@ -19,6 +19,12 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Written on the Wall II - Conjecture 103
 
+**Verbatim statement (WOWII #103, status O):**
+> If G is a simple connected graph, then α(G) ≤ FLOOR[b(G) - LN[average of ecc(v)]
+
+**Source:** http://cms.uhd.edu/faculty/delavinae/research/wowII/all.html#conj103
+
+
 *Reference:*
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 -/

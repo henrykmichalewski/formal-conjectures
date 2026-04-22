@@ -19,6 +19,12 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Written on the Wall II - Conjecture 109
 
+**Verbatim statement (WOWII #109, status O):**
+> If G is a simple connected graph, then α(G) ≤ FLOOR[(residue(G)+2b(G))/3]
+
+**Source:** http://cms.uhd.edu/faculty/delavinae/research/wowII/all.html#conj109
+
+
 *Reference:*
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 -/

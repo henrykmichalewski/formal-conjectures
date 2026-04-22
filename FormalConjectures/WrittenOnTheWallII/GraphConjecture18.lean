@@ -19,6 +19,12 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Written on the Wall II - Conjecture 18
 
+**Verbatim statement (WOWII #18, status T):**
+> If G is a simple connected graph, then b(G) ≥ α(G) + CEIL(sqrt(dist_max(M)))
+
+**Source:** http://cms.uhd.edu/faculty/delavinae/research/wowII/all.html#conj18
+
+
 *Reference:*
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 -/

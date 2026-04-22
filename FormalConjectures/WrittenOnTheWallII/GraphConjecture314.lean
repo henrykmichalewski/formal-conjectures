@@ -19,6 +19,12 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Written on the Wall II - Conjecture 314
 
+**Verbatim statement (WOWII #314, status O):**
+> Let G is a simple connected graph with n > 1. If G is triangle-free and path number ≤ 4, then G is well total dominated.
+
+**Source:** http://cms.uhd.edu/faculty/delavinae/research/wowII/all.html#conj314
+
+
 *Reference:*
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 -/

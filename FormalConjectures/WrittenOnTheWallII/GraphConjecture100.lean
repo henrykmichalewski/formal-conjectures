@@ -19,6 +19,12 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Written on the Wall II - Conjecture 100
 
+**Verbatim statement (WOWII #100, status O):**
+> If G is a simple connected graph, then α(G) ≤ CEIL[(maximum of λ(v) + 0.5*length(G))/2]
+
+**Source:** http://cms.uhd.edu/faculty/delavinae/research/wowII/all.html#conj100
+
+
 *Reference:*
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 

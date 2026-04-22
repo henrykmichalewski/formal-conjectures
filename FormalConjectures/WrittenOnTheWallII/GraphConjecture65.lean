@@ -19,6 +19,12 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Written on the Wall II - Conjecture 65
 
+**Verbatim statement (WOWII #65, status O):**
+> If G is a simple connected graph, then f(G) ≥ dist_min(A) + CEIL(dist_min(M)/3], where A is the set of vertices of minimum degree and M is the set of vertices of maximum degree.
+
+**Source:** http://cms.uhd.edu/faculty/delavinae/research/wowII/all.html#conj65
+
+
 *Reference:*
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 -/

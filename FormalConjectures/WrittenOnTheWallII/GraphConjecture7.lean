@@ -19,6 +19,12 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Written on the Wall II - Conjecture 7
 
+**Verbatim statement (WOWII #7, status T):**
+> If G is a simple connected graph, then L_s(G) ≥ maximum of λ(v) -1 + n - 2α(G)
+
+**Source:** http://cms.uhd.edu/faculty/delavinae/research/wowII/all.html#conj7
+
+
 *Reference:*
 [E. DeLaVina, Written on the Wall II, Conjectures of Graffiti.pc](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 
