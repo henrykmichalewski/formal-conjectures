@@ -19,6 +19,14 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Erdős Problem 501
 
+**Verbatim statement (Erdős #501, status O):**
+> For every $x\in\mathbb{R}$ let $A_x\subset \mathbb{R}$ be a bounded set with outer measure $<1$. Must there exist an infinite independent set, that is, some infinite $X\subseteq \mathbb{R}$ such that $x\not\in A_y$ for all $x\neq y\in X$?If the sets $A_x$ are closed and have measure $<1$, then must there exist an independent set of size $3$?
+
+**Source:** https://www.erdosproblems.com/501
+
+**Notes:** OPEN
+
+
 *Reference:* [erdosproblems.com/501](https://www.erdosproblems.com/501)
 -/
 
