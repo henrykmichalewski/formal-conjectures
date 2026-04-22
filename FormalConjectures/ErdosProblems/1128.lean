@@ -19,6 +19,14 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Erdős Problem 1128
 
+**Verbatim statement (Erdős #1128, status R):**
+> Let $A,B,C$ be three sets of cardinality $\aleph_1$. Is it true that, in any $2$-colouring of $A\times B\times C$, there must exist $A_1\subset A$, $B_1\subset B$, $C_1\subset C$, all of cardinality $\aleph_0$, such that $A_1\times B_1\times C_1$ is monochromatic?
+
+**Source:** https://www.erdosproblems.com/1128
+
+**Notes:** SOLVED - $50
+
+
 *Reference:* [erdosproblems.com/1128](https://www.erdosproblems.com/1128)
 
 Erdős offered a \$50 prize for the resolution of this problem. It was disproved by
