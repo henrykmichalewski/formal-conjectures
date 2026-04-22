@@ -19,6 +19,14 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Erdős Problem 1175
 
+**Verbatim statement (Erdős #1175, status O):**
+> Let $\kappa$ be an uncountable cardinal. Must there exist a cardinal $\lambda$ such that every graph with chromatic number $\lambda$ contains a triangle-free subgraph with chromatic number $\kappa$?
+
+**Source:** https://www.erdosproblems.com/1175
+
+**Notes:** OPEN
+
+
 *Reference:* [erdosproblems.com/1175](https://www.erdosproblems.com/1175)
 
 ## Problem statement
