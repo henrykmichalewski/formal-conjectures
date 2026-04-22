@@ -19,6 +19,14 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Erdős Problem 596
 
+**Verbatim statement (Erdős #596, status O):**
+> For which graphs $G_1,G_2$ is it true that for every $n\geq 1$ there is a graph $H$ without a $G_1$ but if the edges of $H$ are $n$-coloured then there is a monochromatic copy of $G_2$, and yet for every graph $H$ without a $G_1$ there is an $\aleph_0$-colouring of the edges of $H$ without a monochromatic $G_2$.
+
+**Source:** https://www.erdosproblems.com/596
+
+**Notes:** OPEN
+
+
 *Reference:* [erdosproblems.com/596](https://www.erdosproblems.com/596)
 
 *References for known results:*
