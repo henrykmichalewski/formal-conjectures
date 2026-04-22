@@ -19,6 +19,14 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Erdős Problem 70
 
+**Verbatim statement (Erdős #70, status O):**
+> Let $\mathfrak{c}$ be the ordinal of the real numbers, $\beta$ be any countable ordinal, and $2\leq n<\omega$. Is it true that $\mathfrak{c}\to (\beta, n)_2^3$?
+
+**Source:** https://www.erdosproblems.com/70
+
+**Notes:** OPEN
+
+
 *Reference:* [erdosproblems.com/70](https://www.erdosproblems.com/70)
 
 ## Problem Statement
