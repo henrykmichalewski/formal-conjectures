@@ -20,6 +20,14 @@ import FormalConjecturesForMathlib.Combinatorics.Hypergraph.ThreeUniform
 /-!
 # Erdős Problem 593
 
+**Verbatim statement (Erdős #593, status O):**
+> Characterize those finite 3-uniform hypergraphs which appear in every 3-uniform hypergraph of chromatic number $>\aleph_0$.
+
+**Source:** https://www.erdosproblems.com/593
+
+**Notes:** OPEN - $500
+
+
 *Reference:* [erdosproblems.com/593](https://www.erdosproblems.com/593)
 
 *References for known results:*
