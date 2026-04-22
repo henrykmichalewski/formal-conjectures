@@ -19,6 +19,14 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Erdős Problem 595
 
+**Verbatim statement (Erdős #595, status O):**
+> Is there an infinite graph $G$ which contains no $K_4$ and is not the union of countably many triangle-free graphs?
+
+**Source:** https://www.erdosproblems.com/595
+
+**Notes:** OPEN - $250
+
+
 *Reference:* [erdosproblems.com/595](https://www.erdosproblems.com/595)
 
 *References for known results:*
