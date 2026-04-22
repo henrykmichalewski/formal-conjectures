@@ -19,6 +19,14 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Erdős Problem 1167
 
+**Verbatim statement (Erdős #1167, status O):**
+> Let $r\geq 2$ be finite and $\lambda$ be an infinite cardinal. Let $\kappa_\alpha$ be cardinals for all $\alpha<\gamma$. Is it true that\[2^\lambda \to (\kappa_\alpha+1)_{\alpha<\gamma}^{r+1}\]implies\[\lambda \to (\kappa_\alpha)_{\alpha<\gamma}^{r}?\]Here $+$ means cardinal addition, so that $\kappa_\alpha+1=\kappa_\alpha$ if $\kappa_\alpha$ is infinite.
+
+**Source:** https://www.erdosproblems.com/1167
+
+**Notes:** OPEN
+
+
 *Reference:* [erdosproblems.com/1167](https://www.erdosproblems.com/1167)
 
 ## Problem Statement
