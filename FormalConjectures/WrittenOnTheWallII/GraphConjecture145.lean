@@ -54,11 +54,6 @@ open Classical SimpleGraph
 
 variable {α : Type*} [Fintype α] [DecidableEq α] [Nontrivial α]
 
-/-- `largestInducedTreeSize G` is the number of vertices in a largest induced subtree of `G`.
-A tree is a connected acyclic graph; an induced tree is an induced subgraph that is a tree. -/
-noncomputable def largestInducedTreeSize (G : SimpleGraph α) : ℕ :=
-  sSup { n | ∃ s : Finset α, s.card = n ∧ (G.induce (s : Set α)).IsTree }
-
 /-- `localIndependenceMin G` is the minimum over all vertices of the local independence
 number `indepNeighborsCard G v`. This equals `lMin` from DeLaVina's notation. -/
 noncomputable def localIndependenceMin (G : SimpleGraph α) : ℕ :=
