@@ -105,6 +105,10 @@ noncomputable def maxEccentricity (G : SimpleGraph α) : ℕ∞ :=
 noncomputable def maxEccentricityVertices (G : SimpleGraph α) : Set α :=
   {v : α | eccentricity G v = maxEccentricity G}
 
+/-- The set of vertices of maximum degree. -/
+noncomputable def maxDegreeVertices (G : SimpleGraph α) [DecidableRel G.Adj] : Set α :=
+  {v : α | G.degree v = G.maxDegree}
+
 /-- The average eccentricity of a graph `G`: the mean of `eccentricity G v` over all vertices,
 converted to a real number. Returns 0 if the graph has no vertices. -/
 noncomputable def averageEccentricity (G : SimpleGraph α) : ℝ :=

@@ -37,13 +37,14 @@ variable {α : Type*} [Fintype α] [DecidableEq α]
 /--
 WOWII [Conjecture 34](http://cms.dt.uh.edu/faculty/delavinae/research/wowII/)
 
-Let `path(G)` be the floor of the average distance of a connected graph `G`.
-Then
-`path(G) ≥ ceil( distavg(G, center) + distavg(G, maxEccentricityVertices G) )`.
+Let `path(G)` be the size of the longest induced path of a connected graph `G`,
+let `C = graphCenter G` be the set of centers (minimum-eccentricity vertices)
+and `M = maxDegreeVertices G` be the set of vertices of maximum degree. Then
+`path(G) ≥ ceil( distavg(G, C) + distavg(G, M) )`.
 -/
 @[category research open, AMS 5]
 theorem conjecture34 [Nontrivial α] (G : SimpleGraph α) (h_conn : G.Connected) :
-    Int.ceil (distavg G (graphCenter G) + distavg G (maxEccentricityVertices G)) ≤ (path G : ℤ) := by
+    Int.ceil (distavg G (graphCenter G) + distavg G (maxDegreeVertices G)) ≤ (path G : ℤ) := by
   sorry
 
 end WrittenOnTheWallII.GraphConjecture34
