@@ -15,11 +15,8 @@ limitations under the License.
 -/
 module
 
-public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 public import Mathlib.Algebra.BigOperators.Ring.Finset
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
-public import Mathlib.Tactic.Linarith
-public import Mathlib.Tactic.Positivity
 public import Mathlib.Data.Real.Basic
 
 @[expose] public section

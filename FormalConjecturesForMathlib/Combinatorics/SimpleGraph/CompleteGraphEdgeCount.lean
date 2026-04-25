@@ -15,7 +15,6 @@ limitations under the License.
 -/
 module
 
-public import Mathlib.Combinatorics.SimpleGraph.Basic
 public import Mathlib.Combinatorics.SimpleGraph.Finite
 
 @[expose] public section

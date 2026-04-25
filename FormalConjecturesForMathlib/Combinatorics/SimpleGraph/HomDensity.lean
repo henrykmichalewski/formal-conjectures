@@ -16,13 +16,8 @@ limitations under the License.
 module
 
 
+public import Mathlib.Analysis.Normed.Ring.Basic
 public import Mathlib.Combinatorics.SimpleGraph.Maps
-public import Mathlib.Combinatorics.SimpleGraph.Finite
-public import Mathlib.Data.Fintype.Pi
-public import Mathlib.Data.Fintype.BigOperators
-public import Mathlib.Data.Real.Basic
-public import Mathlib.Analysis.Normed.Ring.Lemmas
-public import Mathlib.Tactic.Positivity
 
 @[expose] public section
 
